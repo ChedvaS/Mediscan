@@ -7,6 +7,7 @@ import { medicine } from '../classes/medicine';
 @Injectable({
   providedIn: 'root'
 })
+
 export class MedicineService {
   url :string="https://localhost:44345/api/medicine/"
   //httpclient משתנה המאפשר גישה עם מסד הנתונים 
