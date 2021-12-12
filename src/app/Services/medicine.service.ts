@@ -1,17 +1,13 @@
-<<<<<<< HEAD
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { medicine } from '../classes/medicine';
-=======
-import { Injectable } from '@angular/core';
->>>>>>> b9eefc989b84f8036102689ede002f12b086a5fd
 
 @Injectable({
   providedIn: 'root'
 })
 export class MedicineService {
-<<<<<<< HEAD
   url :string="https://localhost:44345/api/medicine/"
   //httpclient משתנה המאפשר גישה עם מסד הנתונים 
   constructor(private http:HttpClient ) { }
@@ -41,10 +37,4 @@ deleteMedicine(id:number):Observable<boolean>
 }
 
 
-
-
-=======
-
-  constructor() { }
->>>>>>> b9eefc989b84f8036102689ede002f12b086a5fd
 }
