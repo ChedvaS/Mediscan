@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-scanne-page',
@@ -9,16 +9,24 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ScannePageComponent implements OnInit {
 
   constructor(public router:Router,public activeRouter:ActivatedRoute) { }
+  //הגדרת משתנים
+  fileToUpload: File = null;
+  formData: FormData = new FormData();
 
   ngOnInit(): void {
   }
 
-  upload(file:File)
+  myFunction()
   {
-    debugger
-   console.log(file[0].name);
-//    this.srvice.sendFile(file[0]).subscribe(e=>
-//  { console.log("sucsses");}
-  //  )
+    this.router.navigate(["/activityReminders‏"]);
   }
+//פונקציה לשמירת התמונה
+upload(files: FileList)
+{
+  debugger
+  this.fileToUpload = files.item(0);
+  this.formData.append('sticker', this.fileToUpload, this.fileToUpload.name);
+  //  saveFileInServer(this.formData)
+}
+
 }

@@ -8,7 +8,7 @@ import { reminderdetails } from '../classes/reminderdetails';
 })
 export class ReminderDetailsService {
 
-  url :string="https://localhost:44345/api/reminderdatails/"
+  url :string="https://localhost:44362/api/reminderdatails/"
   //httpclient משתנה המאפשר גישה עם מסד הנתונים 
   constructor(private http:HttpClient ) { }
   //שליפה

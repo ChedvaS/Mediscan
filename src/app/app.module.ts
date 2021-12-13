@@ -47,6 +47,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { HandWritReminderComponent } from './components/hand-writ-reminder/hand-writ-reminder.component';
 
+
 //import { MatToolbarModule } from '@angular/material/toolbar'; ‏
 
 
@@ -60,9 +61,7 @@ import { HandWritReminderComponent } from './components/hand-writ-reminder/hand-
     SearchMedicineComponent,
     DetailsMedicineTakeComponent,
     ActivityRemindersComponent,
-    HandWritReminderComponent,
-
-
+    HandWritReminderComponent
   ],
   imports: [
     RouterModule,

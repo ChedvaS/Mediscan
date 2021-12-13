@@ -1,36 +1,37 @@
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
+<span  style=" font-size:22px; color:white; margin-top: 45px; margin-left: 900px;" class="glyphicon glyphicon-user"></span> ‏
 
-
-  <!-- <div style="border-radius:50px; width: 15px; height: 15px; background-color: white; border-style: unset; border-color: orangered; "></div> -->
-  <span  style=" font-size:22px; color:white; margin-top: 45px; margin-left: 900px;" class="glyphicon glyphicon-user"></span> ‏
-  
-<div  >
-
-  <!-- <input  type = "file" name = "file" id = "file"  class = "inputfile" />
-<div style="color: rgb(255,190,136)"> <input type="file" (change)="upload($event.target.files)" accept="image/*"> </div>
- -->
 
 <div style="margin-top: 190px; margin-left: 715px; font-size:15px; font-family: 'Varela Round'; font-size: 35px; color: white;">!הי חדוה</div>
 
+<div style="margin-top: 75px; margin-left: 650px;" > 
+  <input type="file" name = "file" id = "file"  class = "inputfile" (change)="upload($event.target.files)" accept="image/*" class="custom-file-input" >
+</div><br>
 
-    <button style="margin-top: 75px; margin-left: 650px; width: 250px;  height: 50px;  padding: 10px 20px; border-radius: 100px; width: 250px ; background-color: white; font-family: 'Varela Round'; font-size: 12px; text-align: center;" type="button" class="btn" >
+    <!-- <button style="margin-top: 75px; margin-left: 650px; width: 250px;  height: 50px;  padding: 10px 20px; border-radius: 100px; width: 250px ; background-color: white; font-family: 'Varela Round'; font-size: 12px; text-align: center;" type="button" class="btn" >
       <div style="font-size: 22px;"> <span class="glyphicon glyphicon-picture" style=" font-size:26px; "> </span> קליטת חפיסה</div>
-      </button><br><br>
+      </button><br><br> -->
 
-    <button routerLink="/handWritMedicine" style=" margin-left: 650px; width: 250px;  height: 50px;  padding: 10px 20px; border-radius: 100px; width: 250px; background-color: white; font-family: 'Varela Round'; font-size: 12px; text-align: center;" type="button" class="btn">
-      <div style="font-size: 22px;"> <span class="glyphicon glyphicon-pencil" style=" font-size:26px;  "></span>  קליט ללא מרשם</div>  
-   </button><br><br>
-    <button style=" margin-left: 650px; width: 250px;  height: 50px;  padding: 10px 20px; border-radius: 100px; width: 250px; background-color: white; font-family: 'Varela Round'; font-size: 12px; text-align: center;" type="button" class="btn"  >  
-      <div style="font-size: 22px;"> <span class="glyphicon glyphicon-search" style=" font-size:26px; "> </span> חיפוש תרופה</div> 
-    </button><br> <br><br>
+<button routerLink="/handWritMedicine" style=" margin-left: 650px; width: 250px;  height: 50px;  padding: 10px 20px; border-radius: 100px; background-color: white; font-family: 'Varela Round'; font-size: 12px; text-align: center;" type="button" class="btn">
+  <div style="font-size: 20px;">
+        <!-- <span class="glyphicon glyphicon-pencil" style=" font-size:26px;  "></span>   -->  
+        קליטה ללא מרשם</div>  
+</button><br><br>
 
-    <span class="glyphicon glyphicon-bell" style="color: white; font-size:36px; margin-left: 760px; ">  </span><br>
-    <span  matBadge="1" matBadgeOverlap="false"  style=" margin-left: 790px;"></span>
+<button routerLink="/searchMedicine" style=" margin-left: 650px; width: 250px;  height: 50px;  padding: 10px 20px; border-radius: 100px; background-color: white; font-family: 'Varela Round'; font-size: 12px; text-align: center; " type="button" class="btn"  >  
+  <div style="font-size: 20px;"> 
+        <!-- <span class="glyphicon glyphicon-search" style=" font-size:26px; "> </span> -->  
+        חיפוש תרופה</div> 
+</button><br><br><br>
+    
+<div (click)="myFunction()" > 
+  <i class="glyphicon glyphicon-bell" style="color: white; font-size:36px; margin-left: 760px; "></i> 
+  <span   matBadge="1" matBadgeOverlap="false"  style=" margin-left: 790px;" ></span>
+</div><br>
    
-  </div>
+

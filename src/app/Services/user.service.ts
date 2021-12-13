@@ -7,7 +7,7 @@ import { users } from '../classes/users';
   providedIn: 'root'
 })
 export class UserService {
-  url :string="https://localhost:44345/api/user/"
+  url :string="https://localhost:44362/api/user/"
   constructor(private http:HttpClient ) { }
 
   //הוספה
