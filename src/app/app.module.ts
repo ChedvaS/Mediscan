@@ -10,6 +10,7 @@ import { SearchMedicineComponent } from './components/search-medicine/search-med
 import { ActivityRemindersComponent } from './components/activity-reminders/activity-reminders.component';
 import { DetailsMedicineTakeComponent } from './components/details-medicine-take/details-medicine-take.component';
 import { FormsModule} from '@angular/forms';
+import {HttpClientModule} from  '@angular/common/http';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 //import { MatIconRegistry } from '@angular/material/icon';
@@ -46,6 +47,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { HandWritReminderComponent } from './components/hand-writ-reminder/hand-writ-reminder.component';
+import { MedicineService } from './Services/medicine.service';
+import { ReminderDetailsService } from './Services/reminder-details.service';
+import { UserService } from './Services/user.service';
 
 
 //import { MatToolbarModule } from '@angular/material/toolbar'; ‏
@@ -100,11 +104,12 @@ import { HandWritReminderComponent } from './components/hand-writ-reminder/hand-
     MatSortModule,
     MatTableModule,
     MatTabsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
 
 
   ],
-  providers: [],
+  providers: [MedicineService,ReminderDetailsService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

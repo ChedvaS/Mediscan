@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { MedicineService } from 'src/app/Services/medicine.service';
 
 @Component({
   selector: 'app-scanne-page',
@@ -8,7 +9,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 })
 export class ScannePageComponent implements OnInit {
 
-  constructor(public router:Router,public activeRouter:ActivatedRoute) { }
+  constructor(public router:Router,public activeRouter:ActivatedRoute,public medicineserve:MedicineService) { }
   //הגדרת משתנים
   fileToUpload: File = null;
   formData: FormData = new FormData();
@@ -26,7 +27,7 @@ upload(files: FileList)
   debugger
   this.fileToUpload = files.item(0);
   this.formData.append('sticker', this.fileToUpload, this.fileToUpload.name);
-  //  saveFileInServer(this.formData)
+  this.medicineserve.saveFileInServer(this.formData);
 }
 
 }

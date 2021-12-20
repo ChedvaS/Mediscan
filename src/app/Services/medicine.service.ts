@@ -9,7 +9,7 @@ import { medicine } from '../classes/medicine';
 })
 
 export class MedicineService {
-
+ 
 url :string="https://localhost:44362/api/medicine/"
 
 //httpclient משתנה המאפשר גישה עם מסד הנתונים 
@@ -44,7 +44,9 @@ deleteMedicine(id:number):Observable<boolean>
 }
 
 //שמירה התמונה של מדבקת התרופה
-saveFileInServer(formData:FormData){
-
+saveFileInServer(formData:FormData):Observable<boolean>{
+  debugger
+  
+  return this.http.post<boolean>(this.url+"saveSticker",formData)
 }
 }
