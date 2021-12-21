@@ -1,4 +1,3 @@
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -46,7 +45,6 @@ deleteMedicine(id:number):Observable<boolean>
 //שמירה התמונה של מדבקת התרופה
 saveFileInServer(formData:FormData):Observable<boolean>{
   debugger
-  
   return this.http.post<boolean>(this.url+"saveSticker",formData)
 }
 }
