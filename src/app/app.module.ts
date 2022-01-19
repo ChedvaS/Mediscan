@@ -72,6 +72,8 @@ import { UserService } from './Services/user.service';
     FormsModule,
     RouterModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     //MatIconRegistry,

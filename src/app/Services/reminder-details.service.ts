@@ -8,14 +8,15 @@ import { reminderdetails } from '../classes/reminderdetails';
 })
 export class ReminderDetailsService {
 
-  url :string="https://localhost:44362/api/reminderdatails/"
-  //httpclient משתנה המאפשר גישה עם מסד הנתונים 
-  constructor(private http:HttpClient ) { }
-  //שליפה
-  GetAll():Observable<Array<reminderdetails>>
-  {
-    return this.http.get<Array<reminderdetails>>(this.url+'GetReminderDetailsList')
-  }
+//httpclient משתנה המאפשר גישה עם מסד הנתונים 
+url :string="https://localhost:44362/api/reminderdatails/"
+constructor(private http:HttpClient ) { }
+
+//שליפה
+GetAll():Observable<Array<reminderdetails>>
+{
+  return this.http.get<Array<reminderdetails>>(this.url+'GetReminderDetailsList')
+}
 //שליפת תרופה ע"פ קוד
 GetReminderDetailsById(idReminderDetails:number):Observable<reminderdetails>
 {
