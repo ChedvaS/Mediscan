@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-details-medicine-take',
@@ -6,11 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./details-medicine-take.component.css']
 })
 export class DetailsMedicineTakeComponent implements OnInit {
-
+///הגדרת משתנה מסוג טופס
+myForm:FormGroup
   
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(){   
+    this.myForm=new FormGroup({
+    //  פרמטר ראשון ערך ברירת מחדל
+    //פרמטר השני בדיקות התקינות
+      "namemedicine":new FormControl(null,Validators.required),
+      "namepatient":new FormControl(null,Validators.required),
+      "frequency":new FormControl(null,Validators.required),
+      "leftdate":new FormControl(null,Validators.required),
+     "remarks":new FormControl(null,Validators.required)
+    })}
 
 }

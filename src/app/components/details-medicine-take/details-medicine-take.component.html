@@ -5,34 +5,39 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
 <span  style=" font-size:22px; color:white; margin-top: 45px; margin-left: 900px;" class="glyphicon glyphicon-user"></span> ‏
-  
-<div  style="  width: 300px; " class="example-button-row" >
-    <div style="  width:550px;  margin: auto; margin-left: 510px; margin-top: 150px;">
 
+
+<form  [formGroup]="myForm" style="  width: 300px; " class="example-button-row" >
+    <div style="  width:550px;  margin: auto; margin-left: 510px; margin-top: 150px;">
         <div  style=" margin-left:135px; margin-top: 150px;"  class="form__group field">
-            <input style="width: 250px; text-align: right; " type="text" class="form__field" placeholder="שם התרופה" name="NameMedicine" id='namemedicine' required />
+            <input style="width: 250px; text-align: right; "  formControlName="namemedicine" type="text" class="form__field" placeholder="שם התרופה" name="NameMedicine" id='namemedicine' required />
             <label style="color: white; margin-left: 175px;  " for="namemedicine" class="form__label">שם התרופה</label>
+           
+    <div style="color: white; margin-left: 165px; margin-top: 10px;"  *ngIf="myForm.controls['namemedicine'].invalid ">
+        קוד שדה חובה!
+    </div>
         </div><br>
-    
+        
         <div style="margin-left:135px;" class="form__group field">
-            <input style="width: 250px; text-align: right;" type="text" class="form__field" placeholder=" שם הפציינט" name="NamePatient" id='namepatient' required />
+            <input style="width: 250px; text-align: right;" formControlName="namepatient" type="text" class="form__field" placeholder=" שם הפציינט" name="NamePatient" id='namepatient' required />
             <label style="color: white; margin-left: 175px;  " for="namepatient" class="form__label">שם הפציינט</label>
         </div><br>
 
         <div style="margin-left:135px;" class="form__group field">
-            <input style="width: 250px; text-align: right;" type="text" class="form__field" placeholder=" מספר פעמים ביום" name="Frequency‏" id='frequency‏' required />
-            <label style="color: white; margin-left: 138px;  " for="frequency‏" class="form__label">מספר פעמים ביום</label>
+            <input style="width: 250px; text-align: right;" formControlName="frequency" type="text" class="form__field" placeholder=" מספר פעמים ביום" name="Frequency‏" id='frequency‏' required />
+            <label style="color: white; margin-left: 138px;  " for="frequency" class="form__label">מספר פעמים ביום</label>
         </div><br>
 
         <div style="margin-left:135px;" class="form__group field">
-            <input style="width: 250px; text-align: right;" type="text" class="form__field" placeholder=" מספר פעמים שנותרו" name="LeftDate" id='leftdate' required />
+            <input style="width: 250px; text-align: right;" formControlName="leftdate" type="text" class="form__field" placeholder=" מספר פעמים שנותרו" name="LeftDate" id='leftdate' required />
             <label style="color: white; margin-left: 122px;  " for="leftdate" class="form__label">מספר פעמים שנותרו</label>
         </div><br>
 
         <div style="margin-left:135px;" class="form__group field">
-            <input style="width: 250px; text-align: right;" type="text" class="form__field" placeholder=">הערות לאופן הלקיחה" name="Remarks" id='remarks' required />
+            <input style="width: 250px; text-align: right;"formControlName="remarks" type="text" class="form__field" placeholder=">הערות לאופן הלקיחה" name="Remarks" id='remarks' required />
             <label style="color: white; margin-left: 120px;  " for="remarks" class="form__label">הערות לאופן הלקיחה</label>
         </div>   
 
     </div>
-</div>
+
+</form>

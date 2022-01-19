@@ -9,7 +9,11 @@ export class HandWritReminderComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+
+
+
+    
   }
 
 }

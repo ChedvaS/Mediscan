@@ -28,8 +28,7 @@ upload(files: FileList)
   this.fileToUpload = files.item(0);
   this.formData.append('sticker', this.fileToUpload, this.fileToUpload.name);
   this.medicineserve.saveFileInServer(this.formData).subscribe(p=>{},err=>{console.log("err")});
-  //מרענן את הדף בסיום השמירה
-  window.location.reload();
+ 
 }
 
 }
