@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { medicine } from '../classes/medicine';
 
@@ -9,6 +10,9 @@ import { medicine } from '../classes/medicine';
 
 export class MedicineService {
  
+//הגדרת משתנה מסוג טופס
+myForm:FormGroup
+alarmForm:FormGroup
 url :string="https://localhost:44362/api/medicine/"
 
 //httpclient משתנה המאפשר גישה עם מסד הנתונים 
@@ -43,7 +47,8 @@ deleteMedicine(id:number):Observable<boolean>
 }
 
 //שמירה התמונה של מדבקת התרופה
-saveFileInServer(formData:FormData):Observable<boolean>{
+saveFileInServer(formData:FormData):Observable<boolean>
+{
   debugger
   return this.http.post<boolean>(this.url+"saveSticker",formData)
 }

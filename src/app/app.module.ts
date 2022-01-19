@@ -9,7 +9,7 @@ import { HandWritMedicineComponent } from './components/hand-writ-medicine/hand-
 import { SearchMedicineComponent } from './components/search-medicine/search-medicine.component';
 import { ActivityRemindersComponent } from './components/activity-reminders/activity-reminders.component';
 import { DetailsMedicineTakeComponent } from './components/details-medicine-take/details-medicine-take.component';
-import { FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from  '@angular/common/http';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -70,6 +70,8 @@ import { UserService } from './Services/user.service';
   imports: [
     RouterModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     //MatIconRegistry,
