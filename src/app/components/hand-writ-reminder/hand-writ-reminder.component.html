@@ -21,9 +21,9 @@
         
         
           <!-- ליצור פור שלפי התדירות ביום יפתח ההתראות -->
-        <div *ngFor="let i of alarmList "style="margin-left:135px;" class="form__group field">
-            <input style="width: 250px; text-align: right;" formControlName="alarm'{{i}}'" type="text" class="form__field" placeholder="התראה" name="Alarm‏" id='alarm‏' required />
-            <label style="color: white; margin-left: 190px;"  class="form__label">{{i}} התראה</label>
+        <div *ngFor="let date of remideserve.alarmListDate ; let i=index  "style="margin-left:135px;" class="form__group field">
+            <input style="width: 250px; text-align: right;" formControlName="alarm{{i}}" type="text" class="form__field" placeholder="התראה" name="Alarm‏" id='alarm‏' required />
+            <label style="color: white; margin-left: 190px;"  class="form__label">{{i+1}} התראה</label>
         </div><br>
 
         <div style="margin-top: 170px; margin-left: 140px; color: white;  font-size: 17px; font-family: 'Varela Round';">חזור

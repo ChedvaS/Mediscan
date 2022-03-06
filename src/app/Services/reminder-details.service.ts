@@ -11,13 +11,13 @@ export class ReminderDetailsService {
 //httpclient משתנה המאפשר גישה עם מסד הנתונים 
 url :string="https://localhost:44362/api/reminderdatails/"
 constructor(private http:HttpClient ) { }
-
+  
 //שליפה
 GetAll():Observable<Array<reminderdetails>>
 {
   return this.http.get<Array<reminderdetails>>(this.url+'GetReminderDetailsList')
 }
-//שליפת תרופה ע"פ קוד
+//שליפת פרטי התראה ע"פ קוד
 GetReminderDetailsById(idReminderDetails:number):Observable<reminderdetails>
 {
   return this.http.get<reminderdetails>(this.url+'GetReminderDetailsById/'+idReminderDetails)

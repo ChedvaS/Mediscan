@@ -19,6 +19,11 @@ GetAll():Observable<Array<medicinestock>>
   return this.http.get<Array<medicinestock>>(this.url+'GetMedicineList')
 }
 
+//שליפת פרטי תרופה ע"פ קוד
+GetMedicineStockById(idMedicine:number):Observable<medicinestock>
+{
+  return this.http.get<medicinestock>(this.url+'GetmedicineStockById/'+idMedicine)
+}
 }
 
 

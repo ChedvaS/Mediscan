@@ -25,16 +25,15 @@
                 <!-- <p style="color: white; margin-left: 10px; " *ngIf="MedicineService.myForm.controls['namePatient'].errors['minlength']">שם קצר מידי</p>
                 <p style="color: white; margin-left: 20px; " *ngIf="MedicineService.myForm.controls['namePatient'].errors['maxlength']">שם ארוך מידי</p> -->
                 </div>
-           
         </div><br>
 
         <div style="margin-left:135px;" class="form__group field">
-            <input style="width: 250px ; text-align: right;" type="text" class="form__field" placeholder="תאריך התחלה" name="Date" id='date' required />
+            <input style="width: 250px ; text-align: right;"   formControlName="date" type="text" class="form__field" placeholder="תאריך התחלה" name="data" id='date' required />
             <label style="color: white; margin-left: 160px;" for="date" class="form__label">תאריך התחלה</label>
         </div><br>
 
         <div style="margin-left:135px;" class="form__group field">
-            <input style="width: 250px ; text-align: right;" type="text" class="form__field" placeholder="מינון" name="Minun" id='Minun' required />
+            <input style="width: 250px ; text-align: right;"  formControlName="Minun" type="text" class="form__field" placeholder="מינון" name="Minun" id='Minun' required />
             <label style="color: white; margin-left: 220px;" for="Minun" class="form__label">מינון</label>
         </div><br>
 

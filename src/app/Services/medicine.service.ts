@@ -1,17 +1,31 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { medicine } from '../classes/medicine';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class MedicineService {
- 
+  //רשימה לתיזוכרות
+  alarmList:Array<number>=new Array<number>();
+ //משתנה בולאני לבדיקה האם הלקוח סוקר או כותב ידנית
+ iswrite:boolean=false
 //הגדרת משתנה מסוג טופס
-myForm:FormGroup
+myForm:FormGroup=new FormGroup({
+  //  פרמטר ראשון ערך ברירת מחדל
+  //פרמטר השני בדיקות התקינות
+
+    "nameMedicine":new FormControl(null,Validators.required),
+    "namePatient":new FormControl(null,[Validators.required,Validators.minLength(2),Validators.maxLength(20)]),
+    "date":new FormControl(null,[Validators.required]),
+    "Minun":new FormControl(null,Validators.required),
+    "numDate":new FormControl(null,Validators.required),
+    "frequency":new FormControl(null,Validators.required),
+    "endDate":new FormControl(null,Validators.required),
+  })
 alarmForm:FormGroup
 url :string="https://localhost:44362/api/medicine/"
 
@@ -47,9 +61,8 @@ deleteMedicine(id:number):Observable<boolean>
 }
 
 //שמירה התמונה של מדבקת התרופה
-saveFileInServer(formData:FormData):Observable<boolean>
+saveFileInServer(formData:FormData,email:string):Observable<Map<string,number>>
 {
-  debugger
-  return this.http.post<boolean>(this.url+"saveSticker",formData)
+  return this.http.post<Map<string,number>>(this.url+"saveSticker/"+email+"/1",formData)
 }
 }
