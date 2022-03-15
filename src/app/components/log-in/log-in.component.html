@@ -1,17 +1,22 @@
 <div class="login"  style="margin-top: 100px;">    
-    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+
+    <div style="color: white;text-align: center; font-size:50px;  font-family: 'Calibri'; " >התחברות</div><br><br><br>
+    <!-- <div style="color: white;text-align: center; font-size: 25px; font-family: 'Varela Round';" > MEDISCAN</div> -->
     <form method="post">  
-        <input style="margin-left: 600px; text-align: right; padding: 10px 20px; border-radius: 100px; width: 350px; font-size:15px; font-family: 'Varela Round'; background-color: white; font-size: 17px;" 
-        type="text" name="u" placeholder="שם משתמש" required="required" /><br><br>
+        <input style="margin-left: 600px; text-align: right; padding: 10px 20px; border-radius: 100px; width: 350px; font-size:15px; font-family: 'Calibri'; background-color: white; font-size: 17px;" 
+        type="text" name="u" placeholder="כתובת אימייל" required="required"  [(ngModel)]=" userserve.currentuser.gmail"/><br><br>
 
-        <input style="margin-left: 600px; text-align: right; padding: 10px 20px; border-radius: 100px; width: 350px; font-size:15px; font-family: 'Varela Round'; background-color: white; font-size: 17px;"
-        type="text" name="u" placeholder="סיסמה " required="required" /><br><br>
-
-        <button style="margin-left: 600px; padding: 10px 20px; text-align: center; border-radius: 100px; width: 350px; font-size:15px; font-family: 'Varela Round'; background-color: white; font-size: 17px;" 
-        type="submit">Google התחברות באמצעות </button> <br><br>
-
-        <button style="margin-left: 600px; padding: 10px 20px; text-align: center; border-radius: 100px; width: 350px; font-size:15px; font-family: 'Varela Round'; background-color: white; font-size: 17px;" 
-        type="submit">התחברות </button> <br>       
+        <input style="margin-left: 600px; text-align: right; padding: 10px 20px; border-radius: 100px; width: 350px; font-size:15px; font-family: 'Calibri'; background-color: white; font-size: 17px;"
+        type="password" name="u" placeholder="סיסמה " required="required" [(ngModel)]=" userserve.currentuser.pass" /><br><br>
+        <button style="margin-left: 600px; padding: 10px 20px; text-align: center; border-radius: 100px; width: 350px; font-size:15px; font-family: 'Calibri'; background-color: white; font-size: 17px;" 
+        type="submit" (click)="userserve.SignIn()">התחברות </button> <br><br>
+        <button style="margin-left: 600px; padding: 10px 20px; text-align: center; border-radius: 100px; width: 350px; font-size:15px; font-family: 'Calibri'; background-color: white; font-size: 17px;" 
+        type="submit" (click)="userserve.GoogleAuth()">Google התחברות באמצעות </button> <br>
+        <!-- <button (click)="userserve.SignIn()" style="margin-top: 100px; margin-left: 700px; padding: 10px 20px; border-radius: 100px; width: 150px;" type="button" class="btn">
+            <div style="font-size: 15px; font-family: 'Varela Round'; ">התחברות</div>
+          </button> -->
     </form>
+    <div style="margin-left: 690px;margin-top: 20px;color: rgba(0, 0, 0, 0.863);"> <a [routerLink]="['/signUp']" style="color: white; font-family: 'Calibri';" >אינכם רשומים?להרשמה לחצו כאן </a>  </div>
+    
 </div>
-               

@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { MedicineService } from 'src/app/Services/medicine.service';
 import { RemindersService } from 'src/app/Services/reminders.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-hand-writ-reminder',
@@ -14,7 +16,7 @@ export class HandWritReminderComponent implements OnInit {
   save() {
     // this.WorksSere.lWorks.push(this.myForm.value)
   }
-  constructor(public MedicineService: MedicineService, public remideserve: RemindersService) { }
+  constructor(public MedicineService: MedicineService, public remideserve: RemindersService,public route:Router) { }
 
   frequency: number = this.MedicineService.myForm.value["frequency"];
   alarmForm = {}
@@ -32,8 +34,20 @@ export class HandWritReminderComponent implements OnInit {
       this.MedicineService.alarmForm = new FormGroup(this.alarmForm)
     }
   }
-
-  debugger
-
-
+ok()
+{
+  Swal.fire(
+    'תיזכורת נשמרה בהצלחה!',
+    'You clicked the button!',
+    'success'
+  ).then((result)=>{this.route.navigate(['/scannePage'])})
+}
+// delete()
+// {
+//   Swal.fire(
+//     'האם ברצונך למחוק התראה?',
+//     'You clicked the button!',
+//     'success'
+//   ).then((result)=>{this.remideserve.    )})
+// }
 }

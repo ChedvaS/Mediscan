@@ -21,4 +21,22 @@ GetRemindersById(idReminders:number):Observable<reminders>
 {
   return this.http.get<reminders>(this.url+'GetReminderById/'+idReminders)
 }
+//שליפת רשימת תיזכורות לפי מייל
+GetReminderByGmail(gmail:string):Observable<Array<reminders>>
+{
+  return this.http.get<Array<reminders>>(this.url+'GetReminderByGmail/'+gmail+'/1')
 }
+
+//שליפת רשימת תיזכורות פעילות לפי מייל 
+GetActivityRemindersByGmail(gmail:string):Observable<Array<reminders>>
+{
+  return this.http.get<Array<reminders>>(this.url+'GetActivityRemindersByGmail/'+gmail+'/1')
+}
+
+
+
+
+
+}
+
+      

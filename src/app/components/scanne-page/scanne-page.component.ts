@@ -8,6 +8,7 @@ import { ReminderDetailsService } from 'src/app/Services/reminder-details.servic
 import { RemindersService } from 'src/app/Services/reminders.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TouchSequence } from 'selenium-webdriver';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-scanne-page',
@@ -20,7 +21,8 @@ export class ScannePageComponent implements OnInit {
     public medicineserve: MedicineService
     , public medicinstockserve: MedicinestockService,
     public reminderdetailserve: ReminderDetailsService,
-    public reminderserve: RemindersService
+    public reminderserve: RemindersService,public userserve:UserService,
+    public usersereve:UserService
 
   ) { }
   //הגדרת משתנים
@@ -30,19 +32,17 @@ export class ScannePageComponent implements OnInit {
   ngOnInit() {
 
   }
-
- 
-
+  
   myFunction() {
-    this.router.navigate(["/activityReminders‏"]);
+   
+    this.router.navigate(["/activityReminders"]);
   }
 
   MapOfId: Map<string, number> = new Map<string, number>()
   //פונקציה לשמירת התמונה
   upload(files: FileList) {
     
-    var email = "chedva@GMAIL.COM"
-    debugger
+    var email = this.userserve.currentuser.gmail
     this.fileToUpload = files.item(0);
     this.formData.append('sticker', this.fileToUpload, this.fileToUpload.name);
     this.medicineserve.saveFileInServer(this.formData, email).subscribe(p => {
@@ -56,6 +56,7 @@ export class ScannePageComponent implements OnInit {
         this.medicineserve.myForm.get("numDate").setValue(x.amountDays)
         this.medicineserve.myForm.get("frequency").setValue(x.frequincy)
         this.medicineserve.myForm.get("date").setValue(x.startDate)
+      
        this.reminderserve.subjectemail=x.subjectGmail
         //מילוי טופס ההתראות לפי כמות התראות כל אחד מתמלא בשעת הלקיחה
         for (let i = 0; i < Number(x.frequincy); i++) {
@@ -64,6 +65,7 @@ export class ScannePageComponent implements OnInit {
               this.reminderserve.alarmListDate.push(r.hourTake)
             }, err => { console.log("err") });
         }
+       
       }
       )
 

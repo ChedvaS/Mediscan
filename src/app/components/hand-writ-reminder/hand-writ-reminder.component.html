@@ -25,10 +25,11 @@
             <input style="width: 250px; text-align: right;" formControlName="alarm{{i}}" type="text" class="form__field" placeholder="התראה" name="Alarm‏" id='alarm‏' required />
             <label style="color: white; margin-left: 190px;"  class="form__label">{{i+1}} התראה</label>
         </div><br>
-
-        <div style="margin-top: 170px; margin-left: 140px; color: white;  font-size: 17px; font-family: 'Varela Round';">חזור
-            <span style=" margin-left: 75px; color: white; font-size: 25px;" class="glyphicon glyphicon-ok"></span> 
-            <span style="margin-left: 85px; color: white; font-size: 20px;" class="glyphicon glyphicon-trash"></span>
+        <!-- formControlName="alarm{{i}}|date:'HH:mm'" -->
+        <div style="margin-top: 170px; margin-left: 140px; color: white;  font-size: 17px;  font-family: 'Calibri';">חזור
+            <span style=" margin-left: 75px; color: white; font-size: 25px;" class="glyphicon glyphicon-ok"(click)="ok()"></span> 
+            <span style="margin-left: 85px; color: white; font-size: 20px;" class="glyphicon glyphicon-trash" ></span>
+            <!-- (click)="delete()" -->
         </div>
        
     </div>

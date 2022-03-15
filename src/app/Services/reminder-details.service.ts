@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { reminderdetails } from '../classes/reminderdetails';
+import { reminders } from '../classes/reminders';
+import { TakingDetails } from '../classes/TakingDetails';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +38,10 @@ deleteMedideleteReminderDetailscine(id:number):Observable<boolean>
 {
   return this.http.delete<boolean>(this.url+"deleteReminderDetails/"+id)
 }
+ //שליפת פירוט לקיחה לפי מייל
+ GetTakingDetailsByGmail(gmail:string):Observable<Array<TakingDetails>>
+ {
+   return this.http.get<Array<TakingDetails>>(this.url+'GetTakingDetailsByGmail/'+gmail+'/1')
+ }
 
 }

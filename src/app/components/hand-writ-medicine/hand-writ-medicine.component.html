@@ -9,62 +9,67 @@
 <form [formGroup]="MedicineService.myForm"  style="width: 300px;" class="example-button-row" >
     <div style=" width:550px; margin: auto; margin-left: 510px; margin-top: 65px; ">
 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <div  style=" margin-left:135px; margin-top: -30px;"  class="form__group field">
-            <input style="width: 250px; text-align: right; " type="text" formControlName="nameMedicine" class="form__field" placeholder="שם התרופה" name="NameMedicine" id='namemedicine' required />
-            <label style="color: white; margin-left: 175px;" for="namemedicine" class="form__label">שם התרופה</label>
-            <div style="color: white; margin-left: 182px; margin-top: 10px;" *ngIf="MedicineService.myForm.controls['nameMedicine'].invalid  && (MedicineService.myForm.controls['nameMedicine'].dirty ||MedicineService.myForm.controls['nameMedicine'].touched )">
+            <input style="width: 250px; text-align: right; font-family: 'Calibri'; " type="text" formControlName="nameMedicine" class="form__field" placeholder="שם התרופה" name="NameMedicine" id='namemedicine' required />
+            <label style="color: white; margin-left: 175px; font-family: 'Calibri';" for="namemedicine" class="form__label">שם התרופה</label>
+            <div style=" font-family: 'Calibri';color: white; margin-left: 182px; margin-top: 10px;" *ngIf="MedicineService.myForm.controls['nameMedicine'].invalid  && (MedicineService.myForm.controls['nameMedicine'].dirty ||MedicineService.myForm.controls['nameMedicine'].touched )">
             ! שדה חובה
             </div>
         </div><br>
 
         <div style="margin-left:135px;" class="form__group field">
-            <input style="width: 250px; text-align: right;" type="text" formControlName="namePatient" class="form__field" placeholder=" שם הפציינט" name="NamePatient" id='namepatient' required />
-            <label style="color: rgb(185, 176, 176); margin-left: 175px; " for="namepatient" class="form__label">שם הפציינט</label>
-            <div style="color: white; margin-left: 165px; margin-top: 10px;" *ngIf="MedicineService.myForm.controls['namePatient'].invalid  && (MedicineService.myForm.controls['namePatient'].dirty ||MedicineService.myForm.controls['namePatient'].touched ) ">
+            <input style=" font-family: 'Calibri';width: 250px; text-align: right;" type="text" formControlName="namePatient" class="form__field" placeholder=" שם הפציינט" name="NamePatient" id='namepatient' required />
+            <label style=" font-family: 'Calibri';color: rgb(185, 176, 176); margin-left: 175px; " for="namePatient" class="form__label">שם הפציינט</label>
+            <div style=" font-family: 'Calibri';color: white; margin-left: 165px; margin-top: 10px;" *ngIf="MedicineService.myForm.controls['namePatient'].invalid  && (MedicineService.myForm.controls['namePatient'].dirty ||MedicineService.myForm.controls['namePatient'].touched ) ">
                 ! שדה חובה
                 <!-- <p style="color: white; margin-left: 10px; " *ngIf="MedicineService.myForm.controls['namePatient'].errors['minlength']">שם קצר מידי</p>
                 <p style="color: white; margin-left: 20px; " *ngIf="MedicineService.myForm.controls['namePatient'].errors['maxlength']">שם ארוך מידי</p> -->
                 </div>
         </div><br>
 
-        <div style="margin-left:135px;" class="form__group field">
-            <input style="width: 250px ; text-align: right;"   formControlName="date" type="text" class="form__field" placeholder="תאריך התחלה" name="data" id='date' required />
-            <label style="color: white; margin-left: 160px;" for="date" class="form__label">תאריך התחלה</label>
+        <div style=" font-family: 'Calibri';margin-left:135px;" class="form__group field">
+            <input style=" font-family: 'Calibri';width: 250px ; text-align: right;"   formControlName="date" type="text" class="form__field" placeholder="תאריך התחלה" name="data" id='date' required />
+            <label style=" font-family: 'Calibri';color: white; margin-left: 160px;" for="date" class="form__label">תאריך התחלה</label>
         </div><br>
 
-        <div style="margin-left:135px;" class="form__group field">
-            <input style="width: 250px ; text-align: right;"  formControlName="Minun" type="text" class="form__field" placeholder="מינון" name="Minun" id='Minun' required />
-            <label style="color: white; margin-left: 220px;" for="Minun" class="form__label">מינון</label>
+        <div style=" font-family: 'Calibri';margin-left:135px;" class="form__group field">
+            <input style=" font-family: 'Calibri';width: 250px ; text-align: right;"  formControlName="Minun" type="text" class="form__field" placeholder="מינון" name="Minun" id='Minun' required />
+            <label style=" font-family: 'Calibri';color: white; margin-left: 220px;" for="Minun" class="form__label">מינון</label>
         </div><br>
 
-        <div style="margin-left:135px;" class="form__group field">
-            <input style="width: 250px ; text-align: right;" formControlName="numDate" type="text" class="form__field" placeholder="מספר ימים" name="NumDate" id='numdate' required />
-            <label style="color: white; margin-left: 180px;" for="numdate" class="form__label">מספר ימים</label>
-            <div style="color: white; margin-left: 182px; margin-top: 10px;" *ngIf="MedicineService.myForm.controls['numDate'].invalid  && (MedicineService.myForm.controls['numDate'].dirty ||MedicineService.myForm.controls['numDate'].touched )">
+        <div style=" font-family: 'Calibri';margin-left:135px;" class="form__group field">
+            <input style=" font-family: 'Calibri';width: 250px ; text-align: right;" formControlName="numDate" type="text" class="form__field" placeholder="מספר ימים" name="NumDate" id='numdate' required />
+            <label style=" font-family: 'Calibri';color: white; margin-left: 180px;" for="numdate" class="form__label">מספר ימים</label>
+            <div style=" font-family: 'Calibri';color: white; margin-left: 182px; margin-top: 10px;" *ngIf="MedicineService.myForm.controls['numDate'].invalid  && (MedicineService.myForm.controls['numDate'].dirty ||MedicineService.myForm.controls['numDate'].touched )">
                 ! שדה חובה
                 </div>
         </div><br>
 
-        <div style="margin-left:135px;" class="form__group field">
-            <input style="width: 250px ; text-align: right;" type="text" formControlName="frequency" class="form__field" placeholder=" תדירות ביום" name="Frequency" id='frequency' required />
-            <label style="color: white; margin-left: 172px;" for="frequency" class="form__label">תדירות ביום</label>
-            <div style="color: white; margin-left: 182px; margin-top: 10px;" *ngIf="MedicineService.myForm.controls['frequency'].invalid  && (MedicineService.myForm.controls['frequency'].dirty ||MedicineService.myForm.controls['frequency'].touched )">
+        <div style=" font-family: 'Calibri';margin-left:135px;" class="form__group field">
+            <input style=" font-family: 'Calibri';width: 250px ; text-align: right;" type="text" formControlName="frequency" class="form__field" placeholder=" תדירות ביום" name="Frequency" id='frequency' required />
+            <label style=" font-family: 'Calibri';color: white; margin-left: 172px;" for="frequency" class="form__label">תדירות ביום</label>
+            <div style=" font-family: 'Calibri';color: white; margin-left: 182px; margin-top: 10px;" *ngIf="MedicineService.myForm.controls['frequency'].invalid  && (MedicineService.myForm.controls['frequency'].dirty ||MedicineService.myForm.controls['frequency'].touched )">
                 ! שדה חובה
                 </div>
             
         </div><br>
 
-        <div style="margin-left:135px;" class="form__group field">
-            <input style="width: 250px ; text-align: right;" type="text" class="form__field" placeholder=" תאריך תפוגה" name="EndDate" id='endDate' required />
-            <label style="color: white; margin-left: 165px;" for="enddate" class="form__label">תאריך תפוגה</label>
+        <div  style=" font-family: 'Calibri';margin-left:135px;" class="form__group field">
+            <input style=" font-family: 'Calibri';width: 250px ; text-align: right;" type="text" class="form__field" placeholder=" תאריך תפוגה" formControlName="endDate" name="EndDate" id='endDate' required />
+            <label style=" font-family: 'Calibri';color: white; margin-left: 165px;" for="enddate" class="form__label">תאריך תפוגה</label>
         </div><br>
 
-        <div style="margin-left:150px;" class="form__group field">
-            <label style="color: white; font-size: 15px;  font-family: 'Varela Round';"> האם התרופה תסתיים בתום השימוש</label>
+        <div style=" font-family: 'Calibri';margin-left:150px;" class="form__group field">
+            <label style=" font-family: 'Calibri';color: white; font-size: 15px;   font-family: 'Calibri';;"> האם התרופה תסתיים בתום השימוש</label>
             
         </div>  
 
     </div>
 </form>
-<input style="margin-left: auto;"  type="checkbox" class="form__field" name="Frequency" id='frequency' required /> 
- <button routerLink="/handWritReminderComponent">ffff</button>
+<!-- <button routerLink="/handWritReminderComponent" " style="margin-top: 100px; margin-left: 700px; padding: 10px 20px; border-radius: 100px; width: 150px;" type="button" class="btn">
+    <div style="font-size: 15px;  font-family: 'Calibri';; ">שעות התיזכורות</div>
+  </button> -->
+<input style=" font-family: 'Calibri';margin-left: auto;"  type="checkbox" class="form__field" name="Frequency" id='frequency' required /> 
+ <button  routerLink="/handWritReminderComponent" >ffff</button>

@@ -32,59 +32,12 @@
           <div class="tbl-content">
             <table cellpadding="0" cellspacing="0">
               <tbody>
-                 <tr *ngFor="let item of lmedicine; ">
-                   <td >{{item.nameMedicine}}</td>
-                 <!-- <td>12/15/2018</td>
-                  <td>Jakarta<div style="margin-left: 110px; margin-top: -20px; border-radius:50px; background-color: red; width: 15px; height: 15px;"></div></td> -->
-                </tr>
-                <!-- <tr>
-                  <td>14/15/2025</td>
-                  <td>17/02/2021</td>
-                  <td>Surabaya <div style="margin-left: 110px; margin-top: -20px; border-radius:50px; background-color: green; width: 15px; height: 15px;"></div></td>
-
-                </tr>  -->
-                <!-- <tr>
-                  <td>12/12/2021</td>
-                  <td>06/05/2021</td>
-                  <td>Jogjakarta <div style="margin-left: 110px; margin-top: -20px; border-radius:50px; background-color: orange; width: 15px; height: 15px;"></div></td>
-
-                </tr>
-                <tr>
-                  <td>17/08/2022</td>
-                  <td>05/12/2021</td>
-                  <td>Lampung <div style="margin-left: 110px; margin-top: -20px; border-radius:50px; background-color: green; width: 15px; height: 15px;"></div></td>
-                
-                </tr>
-                <tr>
-                  <td>02/01/2018</td>
-                  <td>03/09/2017</td>
-                  <td>Jakarta <div style="margin-left: 110px; margin-top: -20px; border-radius:50px; background-color: red; width: 15px; height: 15px;"></div></td>
-              
-                </tr>
-                <tr>
-                  <td>30/05/2023</td>
-                  <td>12/06/2021</td>
-                  <td>Surabaya <div style="margin-left: 110px; margin-top: -20px; border-radius:50px; background-color: green; width: 15px; height: 15px;"></div></td>
-            
-                </tr>
-                <tr>
-                  <td>18/06/2019</td>
-                  <td>Wibowo</td>
-                  <td>Jogjakarta <div style="margin-left: 110px; margin-top: -20px; border-radius:50px; background-color: red; width: 15px; height: 15px;"></div></td>
-          
-                </tr>
-                <tr>
-                  <td>30/12/2021</td>
-                  <td>02/08/2021</td>
-                  <td>Lampung <div style="margin-left: 110px; margin-top: -20px; border-radius:50px; background-color: orange; width: 15px; height: 15px;"></div></td>
-              
-                </tr>
-                <tr>
-                  <td>09/07/2022</td>
-                  <td>05/02/2021</td>
-                  <td>Jakarta <div style="margin-left: 110px; margin-top: -20px; border-radius:50px; background-color: red; width: 15px; height: 15px;"></div></td>
-              
-                </tr> -->
+                 <tr *ngFor="let item of lmedicine">
+                   <td> {{item.ExpiryDate|date:'M/d/yy'}} </td>
+                   <td> {{item.InserDate|date:'M/d/yy'}}  </td>
+                   <td> {{item.NameMedicine}} </td>
+                  <!-- <!-- <td>Jakarta<div style="margin-left: 110px; margin-top: -20px; border-radius:50px; background-color: red; width: 15px; height: 15px;"></div></td>  -->
+                 </tr>
               </tbody>
             </table>
           </div>

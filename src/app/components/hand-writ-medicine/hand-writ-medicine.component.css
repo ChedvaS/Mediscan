@@ -83,11 +83,38 @@
     
   }
 
+.span1 {
+  font-size:22px;
+  color:white;
+  margin-top: 45px;
+  margin-left: 900px;
+}
 
+.span2 {
+  color: white;
+  size: 50px
+}
 
+.form__group1 {
+  margin-left:135px;
+  margin-top: -30px;
+}
 
+.form__field1 {
+  width: 250px;
+  text-align: right;
+}
 
+.form__label1 {
+  color: white;
+  margin-left: 175px;
+}
 
+.validation1 {
+  color: white;
+  margin-left: 182px;
+  margin-top: 10px;
+}
   /* check box */
 
 

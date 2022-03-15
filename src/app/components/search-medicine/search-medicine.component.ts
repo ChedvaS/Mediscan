@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { ListMedicine } from 'src/app/classes/ListMedicine';
 import { medicine } from 'src/app/classes/medicine';
 import { medicinestock } from 'src/app/classes/medicinestock';
 import { MedicineService } from 'src/app/Services/medicine.service';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-search-medicine',
@@ -9,17 +11,16 @@ import { MedicineService } from 'src/app/Services/medicine.service';
   styleUrls: ['./search-medicine.component.css']
 })
 export class SearchMedicineComponent implements OnInit {
+  
 
-  constructor(public medicineService:MedicineService, public m:medicinestock) { }
-  lmedicine:Array<medicine>=new Array< medicine>()
-  lmedicineStock:Array<medicinestock>=new Array< medicinestock>()
+  constructor(public medicineService:MedicineService,public userserve:UserService) { }
+  lmedicine:Array<ListMedicine>=new Array< ListMedicine>()
+  
   ngOnInit(): void {
-    this.lmedicine.push(new medicine(1))
-    //טעינת רשימת התזכורות
-    this.medicineService.GetAll().subscribe(data=>{this.lmedicine=data },err=>{console.log("err")})
-    //טעינת רשימת מלאי התזכורת
-    // this.lmedicineStock.push(new medicinestock(1))
-    // this.
+    this.lmedicine.push(new ListMedicine())
+    //טעינת רשימת התרופות לפי מייל
+    this.medicineService.GetMedicineListByGmail(this.userserve.currentuser.gmail).subscribe(data=>{this.lmedicine=data },err=>{console.log("err")}) 
+    
   }
   }
 

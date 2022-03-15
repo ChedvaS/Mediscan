@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { medicine } from '../classes/medicine';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ListMedicine } from '../classes/ListMedicine';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,12 @@ GetAll():Observable<Array<medicine>>
   return this.http.get<Array<medicine>>(this.url+'GetMedicineList')
 }
 
+//שליפת רשימת תרופות לפי שם מייל
+GetMedicineListByGmail(gmail:string):Observable<Array<ListMedicine>>
+{
+  return this.http.get<Array<ListMedicine>>(this.url+'GetMedicineListByGmail/'+gmail+'/1')
+}
+
 //שליפת תרופה ע"פ קוד
 GetMedicineById(idMedicine:number):Observable<medicine>
 {
@@ -65,4 +72,7 @@ saveFileInServer(formData:FormData,email:string):Observable<Map<string,number>>
 {
   return this.http.post<Map<string,number>>(this.url+"saveSticker/"+email+"/1",formData)
 }
+
+
+
 }

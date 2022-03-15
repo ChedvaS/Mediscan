@@ -50,6 +50,15 @@ import { HandWritReminderComponent } from './components/hand-writ-reminder/hand-
 import { MedicineService } from './Services/medicine.service';
 import { ReminderDetailsService } from './Services/reminder-details.service';
 import { UserService } from './Services/user.service';
+// Firebase services + environment module
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+
 
 
 //import { MatToolbarModule } from '@angular/material/toolbar'; ‏
@@ -65,7 +74,8 @@ import { UserService } from './Services/user.service';
     SearchMedicineComponent,
     DetailsMedicineTakeComponent,
     ActivityRemindersComponent,
-    HandWritReminderComponent
+    HandWritReminderComponent,
+    ChangePasswordComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -109,8 +119,12 @@ import { UserService } from './Services/user.service';
     MatTableModule,
     MatTabsModule,
     FormsModule,
-    HttpClientModule
-
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
 
   ],
   providers: [MedicineService,ReminderDetailsService,UserService],
