@@ -14,12 +14,13 @@
     <div style="  width:550px; margin-left: 500px; margin-top: 100px;">
       <div style="margin-left: 60px;"  class="search-box">
         <button class="btn-search"><i style="font-size: 25px;" class="glyphicon glyphicon-search"></i></button>
-        <input style="  text-align: center;" type="text" class="input-search" placeholder="חיפוש תרופה">
+
+        <input   id="myInput" (keydown)="myFunction()" style="text-align: center;" type="text" title="Type in a name" class="input-search" placeholder="חיפוש תרופה">
       </div>
       <body>
         <section>
           <div class="tbl-header">
-            <table cellpadding="0" cellspacing="0">
+            <table id="myTable" cellpadding="0" cellspacing="0">
               <thead>
                 <tr>
                   <th>תאריך תפוגה</th>
@@ -34,9 +35,10 @@
               <tbody>
                  <tr *ngFor="let item of lmedicine">
                    <td> {{item.ExpiryDate|date:'M/d/yy'}} </td>
-                   <td> {{item.InserDate|date:'M/d/yy'}}  </td>
+                   <td> {{item.InserDate|date:'M/d/yy'}}  </td> 
                    <td> {{item.NameMedicine}} </td>
-                  <!-- <!-- <td>Jakarta<div style="margin-left: 110px; margin-top: -20px; border-radius:50px; background-color: red; width: 15px; height: 15px;"></div></td>  -->
+                   <!-- <td><div [ngClass]="item.ExpiryDate <date ? 'div-style1' : 'div-style2'"> </div></td>   -->
+                   <!--<td><div [ngClass]="{'div-style1': func == 'a', 'div-style2': func =='b', 'div-style3':func =='c'}" > </div></td> -->
                  </tr>
               </tbody>
             </table>

@@ -30,7 +30,6 @@ export class ScannePageComponent implements OnInit {
   formData: FormData = new FormData();
 
   ngOnInit() {
-
   }
   
   myFunction() {
@@ -42,11 +41,13 @@ export class ScannePageComponent implements OnInit {
   //פונקציה לשמירת התמונה
   upload(files: FileList) {
     
+    this.medicineserve.myForm.get("namePatient").setValue(this.userserve.currentuser.fname)
     var email = this.userserve.currentuser.gmail
     this.fileToUpload = files.item(0);
     this.formData.append('sticker', this.fileToUpload, this.fileToUpload.name);
     this.medicineserve.saveFileInServer(this.formData, email).subscribe(p => {
       this.MapOfId = p
+     this.medicinstockserve.GetMedicineStockById(p["idMedicneStock"]).subscribe(x=>this.medicinstockserve.curentMedicineS=x)
       this.medicineserve.GetMedicineById(p["idMedicne"]).subscribe(x =>
         this.medicineserve.myForm.get("nameMedicine").setValue(x.nameMedicine))
       // this.medicinstockserve.GetMedicineStockById(p.get("idMedicneStock")).subscribe( x=>
@@ -63,7 +64,7 @@ export class ScannePageComponent implements OnInit {
           this.reminderserve.GetRemindersById(p["Idreminder" + i + 1]).subscribe
             (r => {
               this.reminderserve.alarmListDate.push(r.hourTake)
-            }, err => { console.log("err") });
+            }, err => { console.log(err) });
         }
        
       }

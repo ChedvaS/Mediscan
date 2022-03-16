@@ -40,7 +40,7 @@ ok()
     'תיזכורת נשמרה בהצלחה!',
     'You clicked the button!',
     'success'
-  ).then((result)=>{this.route.navigate(['/scannePage'])})
+  ).then((result)=>{ this.route.navigate(['/scannePage'])})
 }
 // delete()
 // {

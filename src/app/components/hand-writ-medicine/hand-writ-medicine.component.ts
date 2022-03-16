@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { medicinestock } from 'src/app/classes/medicinestock';
 import { MedicineService } from 'src/app/Services/medicine.service';
+import { MedicinestockService } from 'src/app/Services/medicinestock.service';
 
 @Component({
   selector: 'app-hand-writ-medicine',
@@ -10,10 +12,17 @@ import { MedicineService } from 'src/app/Services/medicine.service';
 export class HandWritMedicineComponent implements OnInit {
 
 
-  constructor(public MedicineService:MedicineService) { }
+  constructor(public MedicineService:MedicineService,public medicneSserve:MedicinestockService) { }
 
   ngOnInit() {
     
+  }
+
+  updetexpirydate()
+  {
+    this.medicneSserve.curentMedicineS.expiryDate=this.MedicineService.myForm.get("endDate").value
+    this.medicneSserve.updateMedicine(this.medicneSserve.curentMedicineS).subscribe
+    (x=>console.log("sec"),err=>console.log(err));
   }
 
 }

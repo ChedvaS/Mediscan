@@ -58,6 +58,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -127,7 +128,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     AngularFireDatabaseModule,
 
   ],
-  providers: [MedicineService,ReminderDetailsService,UserService],
+  providers: [MedicineService,ReminderDetailsService,UserService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

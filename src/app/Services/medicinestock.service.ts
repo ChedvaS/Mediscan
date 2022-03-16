@@ -12,7 +12,8 @@ url :string="https://localhost:44362/api/medicineStock/"
 
 //httpclient משתנה המאפשר גישה עם מסד הנתונים 
   constructor(private http:HttpClient) { }
-
+//משתנה למדיסיןסטוק נוכחי
+curentMedicineS:medicinestock=new medicinestock()
 //שליפה
 GetAll():Observable<Array<medicinestock>>
 {
@@ -24,6 +25,13 @@ GetMedicineStockById(idMedicine:number):Observable<medicinestock>
 {
   return this.http.get<medicinestock>(this.url+'GetmedicineStockById/'+idMedicine)
 }
+
+ //עידכון 
+ updateMedicine(ms:medicinestock):Observable<boolean>
+ {
+   return this.http.post<boolean>(this.url+"updateMedicine",ms)
+ }
+
 }
 
 

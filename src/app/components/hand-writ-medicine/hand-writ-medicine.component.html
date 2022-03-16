@@ -57,7 +57,7 @@
         </div><br>
 
         <div  style=" font-family: 'Calibri';margin-left:135px;" class="form__group field">
-            <input style=" font-family: 'Calibri';width: 250px ; text-align: right;" type="text" class="form__field" placeholder=" תאריך תפוגה" formControlName="endDate" name="EndDate" id='endDate' required />
+            <input (blur)="updetexpirydate()" style=" font-family: 'Calibri';width: 250px ; text-align: right;" type="date" class="form__field" placeholder=" תאריך תפוגה" formControlName="endDate" name="EndDate" id='endDate' required />
             <label style=" font-family: 'Calibri';color: white; margin-left: 165px;" for="enddate" class="form__label">תאריך תפוגה</label>
         </div><br>
 
