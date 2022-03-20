@@ -21,8 +21,8 @@ export class ScannePageComponent implements OnInit {
     public medicineserve: MedicineService
     , public medicinstockserve: MedicinestockService,
     public reminderdetailserve: ReminderDetailsService,
-    public reminderserve: RemindersService,public userserve:UserService,
-    public usersereve:UserService
+    public reminderserve: RemindersService, public userserve: UserService,
+    public usersereve: UserService
 
   ) { }
   //הגדרת משתנים
@@ -31,42 +31,45 @@ export class ScannePageComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   myFunction() {
-   
+
     this.router.navigate(["/activityReminders"]);
   }
 
   MapOfId: Map<string, number> = new Map<string, number>()
   //פונקציה לשמירת התמונה
   upload(files: FileList) {
-    
+    //set the username
     this.medicineserve.myForm.get("namePatient").setValue(this.userserve.currentuser.fname)
     var email = this.userserve.currentuser.gmail
+    let frequency = 0
+    //set the file of the user
     this.fileToUpload = files.item(0);
     this.formData.append('sticker', this.fileToUpload, this.fileToUpload.name);
+    //send it to extract data
     this.medicineserve.saveFileInServer(this.formData, email).subscribe(p => {
-      this.MapOfId = p
-     this.medicinstockserve.GetMedicineStockById(p["idMedicneStock"]).subscribe(x=>this.medicinstockserve.curentMedicineS=x)
+      this.medicinstockserve.GetMedicineStockById(p["idMedicneStock"]).subscribe(x => this.medicinstockserve.curentMedicineS = x)
+
       this.medicineserve.GetMedicineById(p["idMedicne"]).subscribe(x =>
         this.medicineserve.myForm.get("nameMedicine").setValue(x.nameMedicine))
       // this.medicinstockserve.GetMedicineStockById(p.get("idMedicneStock")).subscribe( x=>
       //      this.medicineserve.myForm.get("date").setValue(x.insertDate))
+
       this.reminderdetailserve.GetReminderDetailsById(p["Idreminderdetails"]).subscribe(x => {
         this.medicineserve.myForm.get("Minun").setValue(x.dosage)
         this.medicineserve.myForm.get("numDate").setValue(x.amountDays)
         this.medicineserve.myForm.get("frequency").setValue(x.frequincy)
-        this.medicineserve.myForm.get("date").setValue(x.startDate)
-      
-       this.reminderserve.subjectemail=x.subjectGmail
+        this.medicineserve.myForm.get("date").setValue(new Date(x.startDate))
+        frequency = Number(x.frequincy)
+        this.reminderserve.subjectemail = x.subjectGmail
         //מילוי טופס ההתראות לפי כמות התראות כל אחד מתמלא בשעת הלקיחה
-        for (let i = 0; i < Number(x.frequincy); i++) {
-          this.reminderserve.GetRemindersById(p["Idreminder" + i + 1]).subscribe
-            (r => {
-              this.reminderserve.alarmListDate.push(r.hourTake)
-            }, err => { console.log(err) });
+        for (let i = 0; i < frequency; i++) {
+          this.reminderserve.GetRemindersById(p["Idreminder" + i + 1]).subscribe(r =>
+            this.reminderserve.alarmListDate.push(r.hourTake)
+            , err => console.log(err));
         }
-       
+
       }
       )
 
