@@ -32,11 +32,11 @@
           </div>
           <div class="tbl-content">
             <table cellpadding="0" cellspacing="0">
-              <tbody>
-                 <tr *ngFor="let item of lmedicine">
-                   <td> {{item.ExpiryDate|date:'M/d/yy'}} </td>
-                   <td> {{item.InserDate|date:'M/d/yy'}}  </td> 
-                   <td> {{item.NameMedicine}} </td>
+              <tbody id="contentTable">
+                 <tr *ngFor="let item of lmedicine" [style.background-color]="mapColorsStatus.get(item.status)">
+                   <td> {{item.ExpiryDate|date:'d/M/yy'}} </td>
+                   <td> {{item.InserDate|date:'d/M/yy'}}  </td> 
+                   <td id="medicineName"> {{item.NameMedicine}} </td>
                    <!-- <td><div [ngClass]="item.ExpiryDate <date ? 'div-style1' : 'div-style2'"> </div></td>   -->
                    <!--<td><div [ngClass]="{'div-style1': func == 'a', 'div-style2': func =='b', 'div-style3':func =='c'}" > </div></td> -->
                  </tr>
