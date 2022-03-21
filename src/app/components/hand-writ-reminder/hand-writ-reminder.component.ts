@@ -25,9 +25,8 @@ export class HandWritReminderComponent implements OnInit {
   ngOnInit(): void {
     let value = null
     for (let index = 0; index < Number(this.frequency); index++) {
-      debugger;
       if (this.remideserve.alarmListDate.length != 0)
-       value = this.remideserve.alarmListDate[index]
+       value = new Date(this.remideserve.alarmListDate[index])
       this.alarmForm["alarm" + index] = new FormControl(value, Validators.required)
       this.alarmForm["SubjectReminder"] = new FormControl(this.remideserve.subjectemail, Validators.required)
 
@@ -37,7 +36,7 @@ export class HandWritReminderComponent implements OnInit {
 ok()
 {
   Swal.fire(
-    'תיזכורת נשמרה בהצלחה!',
+    'התיזכורת נשמרה בהצלחה ,יתקבל מסרון למייל בשעת הלקיחה!',
     'You clicked the button!',
     'success'
   ).then((result)=>{ this.route.navigate(['/scannePage'])})

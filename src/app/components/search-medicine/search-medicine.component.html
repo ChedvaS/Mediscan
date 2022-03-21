@@ -8,14 +8,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<span  style=" font-size:22px; color:white; margin-top: 45px; margin-left: 900px;" class="glyphicon glyphicon-user"></span> ‏
+<span  style=" font-size:22px; color:white; margin-top: 45px; margin-left: 900px;" class="glyphicon glyphicon-user" routerLink="/scannePage" ></span> ‏
 
 <div style=" width: 300px;  ">
     <div style="  width:550px; margin-left: 500px; margin-top: 100px;">
       <div style="margin-left: 60px;"  class="search-box">
         <button class="btn-search"><i style="font-size: 25px;" class="glyphicon glyphicon-search"></i></button>
 
-        <input   id="myInput" (keydown)="myFunction()" style="text-align: center;" type="text" title="Type in a name" class="input-search" placeholder="חיפוש תרופה">
+        <input   id="myInput" (keydown)="myFunction()" style="text-align: center ;font-family: 'Calibri';" type="text" title="Type in a name" class="input-search" placeholder="חיפוש תרופה">
       </div>
       <body>
         <section>
@@ -23,20 +23,28 @@
             <table id="myTable" cellpadding="0" cellspacing="0">
               <thead>
                 <tr>
-                  <th>תאריך תפוגה</th>
-                  <th>תאריך כניסה למאגר</th>
-                  <th>שם תרופה</th>
+                  <th style="font-family: 'Calibri';margin-left:135px">תאריך תפוגה</th>
+                  <th style="font-family: 'Calibri';margin-left:135px">תאריך כניסה למאגר</th>
+                  <th style="font-family: 'Calibri';margin-left:135px">שם תרופה</th>
                 </tr>
               </thead>
             </table>
           </div>
           <div class="tbl-content">
             <table cellpadding="0" cellspacing="0">
+<<<<<<< HEAD
               <tbody>
                  <tr *ngFor="let item of lmedicine">
-                   <td> {{item.ExpiryDate|date:'M/d/yy'}} </td>
-                   <td> {{item.InserDate|date:'M/d/yy'}}  </td> 
-                   <td> {{item.NameMedicine}} </td>
+                   <td style="font-family: 'Calibri';margin-left:135px"> {{item.ExpiryDate|date:'M/d/yy'}} </td>
+                   <td style="font-family: 'Calibri';margin-left:135px"> {{item.InserDate|date:'M/d/yy'}}  </td> 
+                   <td style="font-family: 'Calibri';margin-left:135px"> {{item.NameMedicine}} </td>
+=======
+              <tbody id="contentTable">
+                 <tr *ngFor="let item of lmedicine" [style.background-color]="mapColorsStatus.get(item.status)">
+                   <td> {{item.ExpiryDate|date:'d/M/yy'}} </td>
+                   <td> {{item.InserDate|date:'d/M/yy'}}  </td> 
+                   <td id="medicineName"> {{item.NameMedicine}} </td>
+>>>>>>> 741e9d7a2722ca5ee68c73f6f79fef160640dc4f
                    <!-- <td><div [ngClass]="item.ExpiryDate <date ? 'div-style1' : 'div-style2'"> </div></td>   -->
                    <!--<td><div [ngClass]="{'div-style1': func == 'a', 'div-style2': func =='b', 'div-style3':func =='c'}" > </div></td> -->
                  </tr>
@@ -52,9 +60,9 @@
       <div style="margin-left: 300px; height: 3px; width: 90px; background-color: green;"></div>
     </div>
     
-  <div style="margin-left: 80px; font-family: 'Varela Round'; font-size: 15px; color: white;">התוקף עומד לפוג
-    <div style="margin-left: 175px; margin-top: -20px; font-family: 'Varela Round'; font-size: 15px; color: white;">פג תוקף</div>
-    <div style="margin-left: 300px; margin-top: -20px; font-family: 'Varela Round'; font-size: 15px; color: white;">תקין לשימוש</div>
+  <div style="margin-left: 80px; font-family: 'Calibri'; font-size: 15px; color: white;">התוקף עומד לפוג
+    <div style="margin-left: 175px; margin-top: -20px; font-family: 'Calibri'; font-size: 15px; color: white;">פג תוקף</div>
+    <div style="margin-left: 300px; margin-top: -20px; font-family: 'Calibri'; font-size: 15px; color: white;">תקין לשימוש</div>
   </div>
 </div>
 

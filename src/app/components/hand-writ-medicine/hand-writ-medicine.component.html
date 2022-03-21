@@ -4,7 +4,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<span  style=" font-size:22px; color:white; margin-top: 45px; margin-left: 900px;" class="glyphicon glyphicon-user"></span> ‏
+<span  style=" font-size:22px; color:white; margin-top: 45px; margin-left: 900px;" class="glyphicon glyphicon-user" routerLink="/scannePage" ></span> ‏
 <span style="color: white; size: 50px;" class="arrow-alt-left"> </span>
 <form [formGroup]="MedicineService.myForm"  style="width: 300px;" class="example-button-row" >
     <div style=" width:550px; margin: auto; margin-left: 510px; margin-top: 65px; ">
@@ -30,7 +30,7 @@
         </div><br>
 
         <div style=" font-family: 'Calibri';margin-left:135px;" class="form__group field">
-            <input style=" font-family: 'Calibri';width: 250px ; text-align: right;"   formControlName="date" type="text" class="form__field" placeholder="תאריך התחלה" name="data" id='date' required />
+            <input style=" font-family: 'Calibri';width: 250px ; text-align: right;"   formControlName="date" type="date" class="form__field" placeholder="תאריך התחלה" name="data" id='date' required />
             <label style=" font-family: 'Calibri';color: white; margin-left: 160px;" for="date" class="form__label">תאריך התחלה</label>
         </div><br>
 

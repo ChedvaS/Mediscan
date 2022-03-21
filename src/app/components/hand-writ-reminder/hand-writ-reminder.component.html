@@ -8,7 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<span  style=" font-size:22px; color:white; margin-top: 45px; margin-left: 900px;" class="glyphicon glyphicon-user"></span> ‏
+<span  style=" font-size:22px; color:white; margin-top: 45px; margin-left: 900px;" class="glyphicon glyphicon-user" routerLink="/scannePage" ></span> ‏
 
 <form [formGroup]="MedicineService.alarmForm">
 <div  style="width: 300px;  "class="example-button-row" >
@@ -19,14 +19,19 @@
             <label style="color: white; margin-left: 180px;  " for="reminderName" class="form__label">שם תזכורת</label>
         </div><br> <br> <br> <br>
         
-        
+        <!-- [value]="MedicineService.alarmForm.get(alarm).value | date:'HH:mm'"  -->
           <!-- ליצור פור שלפי התדירות ביום יפתח ההתראות -->
         <div *ngFor="let date of remideserve.alarmListDate ; let i=index  "style="margin-left:135px;" class="form__group field">
-            <input style="width: 250px; text-align: right;" formControlName="alarm{{i}}" type="text" class="form__field" placeholder="התראה" name="Alarm‏" id='alarm‏' required />
+            <input style="width: 250px; text-align: right;" [value]="date |date:'HH:mm'"  type="text" class="form__field" placeholder="התראה" name="Alarm‏" id='alarm‏' required />
             <label style="color: white; margin-left: 190px;"  class="form__label">{{i+1}} התראה</label>
         </div><br>
+<<<<<<< HEAD
         <!-- formControlName="alarm{{i}}|date:'HH:mm'" -->
+        <div style="margin-top: 170px; margin-left: 140px; color: white;  font-size: 17px;  font-family: 'Calibri';"  routerLink="/handWritMedicine"  >חזור
+=======
+        <!-- formControlName="alarm{{i}}" -->
         <div style="margin-top: 170px; margin-left: 140px; color: white;  font-size: 17px;  font-family: 'Calibri';">חזור
+>>>>>>> 741e9d7a2722ca5ee68c73f6f79fef160640dc4f
             <span style=" margin-left: 75px; color: white; font-size: 25px;" class="glyphicon glyphicon-ok"(click)="ok()"></span> 
             <span style="margin-left: 85px; color: white; font-size: 20px;" class="glyphicon glyphicon-trash" ></span>
             <!-- (click)="delete()" -->
