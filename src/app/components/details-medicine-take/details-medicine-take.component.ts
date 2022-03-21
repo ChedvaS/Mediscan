@@ -11,7 +11,7 @@ export class DetailsMedicineTakeComponent implements OnInit {
 ///הגדרת משתנה מסוג טופס
 myForm:FormGroup
   
-  constructor(private reminderServe:RemindersService) { }
+  constructor(public reminderServe:RemindersService) { }
 
   ngOnInit(){   
     // לשלוף רשימה של כל משמתש שנכנס של רשימה של תיזכורות פעילות

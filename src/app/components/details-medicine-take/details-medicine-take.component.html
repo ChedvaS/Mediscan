@@ -8,10 +8,10 @@
 <div style="color: white;text-align: center; font-size:30px;  font-family: 'Calibri';" >פירוט ללקיחת התרופה</div>
 
 
-<form  [formGroup]="myForm" style="  width: 300px; " class="example-button-row" >
+<form  [formGroup]="reminderServe.medicineTakeDetailsForm" style="  width: 300px; " class="example-button-row" >
     <div style="  width:550px;  margin: auto; margin-left: 510px; margin-top: 150px;">
         <div  style=" margin-left:135px; margin-top: 150px;"  class="form__group field">
-            <input style="width: 250px; text-align: right; " type="text" class="form__field" placeholder="שם התרופה" name="NameMedicine" id='namemedicine' required />
+            <input style="width: 250px; text-align: right; " type="text" class="form__field" placeholder="שם התרופה" name="NameMedicine" id='namemedicine' required formControlName="namemedicine"/>
             <label style="color: white; margin-left: 175px;" for="namemedicine" class="form__label">שם התרופה</label>
         </div><br>
         
