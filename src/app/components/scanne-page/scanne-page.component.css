@@ -27,6 +27,7 @@
     /* font-weight: 700; */
 
   }
+
   .custom-file-input:hover::before {
     border-color: black;
   }

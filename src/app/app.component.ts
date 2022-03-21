@@ -12,6 +12,8 @@ export class AppComponent {
   title = 'Mediscane';
   ngOnInit() {
     this.route.navigate(['/logIn'])
+
+    // this.route.navigate(['/open'])
   }
   upload(file:File)
   {

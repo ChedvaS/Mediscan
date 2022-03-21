@@ -59,6 +59,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { DatePipe } from '@angular/common';
+import { OpenPageComponent } from './components/open-page/open-page.component';
 
 
 
@@ -76,7 +77,8 @@ import { DatePipe } from '@angular/common';
     DetailsMedicineTakeComponent,
     ActivityRemindersComponent,
     HandWritReminderComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    OpenPageComponent
   ],
   imports: [
     ReactiveFormsModule,

@@ -38,6 +38,8 @@ ok()
   Swal.fire(
     'התיזכורת נשמרה בהצלחה ,יתקבל מסרון למייל בשעת הלקיחה!',
     'You clicked the button!',
+
+    
     'success'
   ).then((result)=>{ this.route.navigate(['/scannePage'])})
 }
