@@ -60,7 +60,7 @@ export class ScannePageComponent implements OnInit {
         this.medicineserve.myForm.get("Minun").setValue(x.dosage)
         this.medicineserve.myForm.get("numDate").setValue(x.amountDays)
         this.medicineserve.myForm.get("frequency").setValue(x.frequincy)
-        this.medicineserve.myForm.get("date").setValue(new Date(x.startDate))
+        this.medicineserve.myForm.get("date").setValue(new Date(x.startDate).toLocaleDateString())
         frequency = Number(x.frequincy)
         this.reminderserve.subjectemail = x.subjectGmail
         //מילוי טופס ההתראות לפי כמות התראות כל אחד מתמלא בשעת הלקיחה
