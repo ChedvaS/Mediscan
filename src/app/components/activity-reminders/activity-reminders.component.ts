@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { activityReminders } from 'src/app/classes/ActivityReminders';
+import { ReminderDetailsService } from 'src/app/Services/reminder-details.service';
 import { RemindersService } from 'src/app/Services/reminders.service';
 import { UserService } from 'src/app/Services/user.service';
+import Swal from 'sweetalert2';
 
 export class PeriodicElement {
   name: string;
@@ -34,11 +36,12 @@ export class ActivityRemindersComponent implements OnInit {
   ListActivityReminders: activityReminders[];
 
 
-  constructor(private reminderServe: RemindersService, private userServe: UserService, private router: Router) { }
+  constructor(private reminderServe: RemindersService, private userServe: UserService, private router: Router, private reminderDetailsServe: ReminderDetailsService) { }
 
   ngOnInit(): void {
     this.reminderServe.GetActivityRemindersByGmail(this.userServe.currentuser.gmail).subscribe(x => {
       this.ListActivityReminders = x
+      this.userServe.ListActivityRemindersOfUser = x
     })
     if (!this.reminderServe.medicineTakeDetailsForm) {
       this.reminderServe.medicineTakeDetailsForm = new FormGroup({
@@ -78,13 +81,34 @@ export class ActivityRemindersComponent implements OnInit {
     this.router.navigate(["detailsMedicineTake"])
   }
 
+  deleteReminder(activeReminder: activityReminders) {
+    Swal.fire({
+      title: "האם ברצונך למחוק התראה?",
+      text: "לא תוכל לבטל פעולה זו",
+      showCancelButton: true,
+      cancelButtonText:"לא",
+      confirmButtonText: "כן, מחק"
+
+    }).then((result) => {
+      let reminder_id = 0 //change to real id
+      if (result.isConfirmed)
+        this.reminderDetailsServe.deleteMedideleteReminderDetailscine(reminder_id).subscribe(x => {
+          if (x == true) {
+            let activeReminderIndex = this.ListActivityReminders.indexOf(activeReminder)
+            if (activeReminderIndex != -1)
+              this.ListActivityReminders.splice(activeReminderIndex, 1)
+            console.log("successfully deleted")
+          }
+          else
+            console.log("there was a problem in deleting")
+        },
+          err => console.log(err))
+    })
+  }
+
+
+
 
 
 
 }
-
-
-
-
-
-

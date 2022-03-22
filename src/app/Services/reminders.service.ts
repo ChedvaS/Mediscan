@@ -15,6 +15,7 @@ export class RemindersService {
   //משתנה לנושא התיזכורת
   subjectemail=""
   medicineTakeDetailsForm :FormGroup
+  numOfReminder:number = 4
   //httpclient משתנה המאפשר גישה עם מסד הנתונים 
   url :string="https://localhost:44362/api/reminders/"
   constructor(private http:HttpClient ) { }
@@ -35,11 +36,6 @@ GetActivityRemindersByGmail(gmail:string):Observable<Array<activityReminders>>
 {
   return this.http.get<Array<activityReminders>>(this.url+'GetActivityRemindersByGmail/'+gmail+'/1')
 }
-
-
-
-
-
 }
 
       

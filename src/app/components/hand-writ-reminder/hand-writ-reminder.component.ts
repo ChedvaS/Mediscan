@@ -37,18 +37,10 @@ ok()
 {
   Swal.fire(
     'התיזכורת נשמרה בהצלחה ,יתקבל מסרון למייל בשעת הלקיחה!',
-    'You clicked the button!',
 
-    
-    'success'
-  ).then((result)=>{ this.route.navigate(['/scannePage'])})
+  ).then((result)=>{
+    this.MedicineService.initalizeForms()
+    this.remideserve.alarmListDate = new Array<Date>()
+     this.route.navigate(['/scannePage'])})
 }
-// delete()
-// {
-//   Swal.fire(
-//     'האם ברצונך למחוק התראה?',
-//     'You clicked the button!',
-//     'success'
-//   ).then((result)=>{this.remideserve.    )})
-// }
 }
