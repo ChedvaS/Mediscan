@@ -22,7 +22,7 @@
           <thead>
             <tr>
               <th >פירוט</th>
-              <th>עריכה/עצירה</th>
+              <th>עריכה</th>
               <!-- <th>עריכה</th> -->
               <th>ימים שנותרו</th>
               <th>התזכורת הבאה</th>
@@ -37,7 +37,7 @@
             <tr *ngFor="let activeReminder of ListActivityReminders">
               <td (click)="showDetails(activeReminder)">לחץ</td>
               <td>
-                <span  style=" font-family: 'Calibri';font-size: 20px;" class="glyphicon glyphicon-stop"></span>
+                <!-- <span  style=" font-family: 'Calibri';font-size: 20px;" class="glyphicon glyphicon-stop"></span> -->
                 <span style=" font-family: 'Calibri';font-size: 20px; margin-left: 12px;"  class="glyphicon glyphicon-pencil"></span>
               </td>
               <td>{{activeReminder.LeftDays}}</td>
@@ -70,15 +70,7 @@
               <td>Acamol</td>
             </tr>
             <tr>
-              <td>3</td>
-              <td>
-                <span style="font-size: 20px;" class="glyphicon glyphicon-stop"></span>
-                <span style="font-size: 20px; margin-left: 12px;"  class="glyphicon glyphicon-pencil"></span>
-              </td>
-              <td>2</td>
-              <td>16:45</td>
-              <td>Acamol</td>
-            </tr> -->
+             
           
           
           </tbody>

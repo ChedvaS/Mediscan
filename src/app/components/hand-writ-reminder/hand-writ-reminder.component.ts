@@ -1,3 +1,4 @@
+import { style } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -21,7 +22,7 @@ export class HandWritReminderComponent implements OnInit {
   frequency: number = this.MedicineService.myForm.value["frequency"];
   alarmForm = {}
 
-  ///לזכור לטפל בדריסת הנתונים
+  
   ngOnInit(): void {
     let value = null
     for (let index = 0; index < Number(this.frequency); index++) {
@@ -34,13 +35,13 @@ export class HandWritReminderComponent implements OnInit {
     }
   }
 ok()
-{
+{ 
+  //מתחילה את העידכון
+  //לכל מחלקה ליצור כורנט ואז לשים את מה שנכנס מהפורם גרופ לכורנט ואז לפי זה לשלוח לפוניקציות עידכון ממולץ לבדוק אם היה שינוי
   Swal.fire(
-    'התיזכורת נשמרה בהצלחה ,יתקבל מסרון למייל בשעת הלקיחה!',
-    'You clicked the button!',
 
-    
-    'success'
+    'התיזכורת נשמרה בהצלחה ,יתקבל מסרון למייל בשעת הלקיחה!',
+   
   ).then((result)=>{ this.route.navigate(['/scannePage'])})
 }
 // delete()
