@@ -50,31 +50,24 @@ export class ScannePageComponent implements OnInit {
     this.formData.append('sticker', this.fileToUpload, this.fileToUpload.name);
     //send it to extract data
     this.medicineserve.saveFileInServer(this.formData, email).subscribe(p => {
-      p= new Map(Object.entries(p));
-      if ( p.size > 0) {
-        if (p.has("idMedicneStock"))
-          this.medicinstockserve.GetMedicineStockById(p.get("idMedicneStock")).subscribe(x => this.medicinstockserve.curentMedicineS = x)
-        if (p.has("idMedicne"))
-          this.medicineserve.GetMedicineById(p.get("idMedicne")).subscribe(x =>
-            this.medicineserve.myForm.get("nameMedicine").setValue(x.nameMedicine))
-        // this.medicinstockserve.GetMedicineStockById(p.get("idMedicneStock")).subscribe( x=>
-        //      this.medicineserve.myForm.get("date").setValue(x.insertDate))
-        if (p.has("Idreminderdetails"))
-          this.reminderdetailserve.GetReminderDetailsById(p.get("Idreminderdetails")).subscribe(x => {
-            this.medicineserve.myForm.get("Minun").setValue(x.dosage)
-            this.medicineserve.myForm.get("numDate").setValue(x.amountDays)
-            this.medicineserve.myForm.get("frequency").setValue(x.frequincy)
-            this.medicineserve.myForm.get("date").setValue(new Date(x.startDate))
-            frequency = Number(x.frequincy)
-            this.reminderserve.subjectemail = x.subjectGmail
-            //מילוי טופס ההתראות לפי כמות התראות כל אחד מתמלא בשעת הלקיחה
-            for (let i = 0; i < frequency; i++) {
-              this.reminderserve.GetRemindersById(p.get("Idreminder" + i + 1)).subscribe(r =>
-                this.reminderserve.alarmListDate.push(r.hourTake)
-                , err => console.log(err));
-            }
-
-          })
+      this.medicinstockserve.GetMedicineStockById(p["idMedicneStock"]).subscribe(x => this.medicinstockserve.curentMedicineS = x)
+      this.medicineserve.GetMedicineById(p["idMedicne"]).subscribe(x =>
+        this.medicineserve.myForm.get("nameMedicine").setValue(x.nameMedicine))
+      // this.medicinstockserve.GetMedicineStockById(p.get("idMedicneStock")).subscribe( x=>
+      //      this.medicineserve.myForm.get("date").setValue(x.insertDate))
+      this.reminderdetailserve.GetReminderDetailsById(p["Idreminderdetails"]).subscribe(x => {
+        this.medicineserve.myForm.get("Minun").setValue(x.dosage)
+        this.medicineserve.myForm.get("numDate").setValue(x.amountDays)
+        this.medicineserve.myForm.get("frequency").setValue(x.frequincy)
+        this.medicineserve.myForm.get("date").setValue(new Date(x.startDate).toLocaleDateString())
+        frequency = Number(x.frequincy)
+        this.reminderserve.subjectemail = x.subjectGmail
+        //מילוי טופס ההתראות לפי כמות התראות כל אחד מתמלא בשעת הלקיחה
+        for (let i = 0; i < frequency; i++) {
+          this.reminderserve.GetRemindersById(p["Idreminder" + i + 1]).subscribe(r =>
+            this.reminderserve.alarmListDate.push(r.hourTake)
+            , err => console.log(err));
+        }})
         this.router.navigate(["/handWritMedicine"]);
       }
       else {

@@ -31,26 +31,27 @@ export class ActivityRemindersComponent implements OnInit {
       this.reminderServe.medicineTakeDetailsForm = new FormGroup({
         //  פרמטר ראשון ערך ברירת מחדל
         //פרמטר השני בדיקות התקינות
-          "namemedicine":new FormControl(null,Validators.required),
-          "namepatient":new FormControl(null,Validators.required),
-          "frequency":new FormControl(null,Validators.required),
-          "leftdate":new FormControl(null,Validators.required),
-         "remarks":new FormControl(null,Validators.required)
-        })
+        "namemedicine": new FormControl(null, Validators.required),
+        "namepatient": new FormControl(null, Validators.required),
+        "frequency": new FormControl(null, Validators.required),
+        "leftdate": new FormControl(null, Validators.required),
+        "remarks": new FormControl(null, Validators.required)
+      })
     }
   }
   getNextTime(activeReminder: activityReminders) {
     let first_time = new Date(activeReminder.TakingTimes[0])
     let currentDateTime = new Date()
     let min_difference = Math.abs((currentDateTime.getHours() - first_time.getHours()))
-    let next_time = undefined
+    let next_time = first_time
     for (let takingTime of activeReminder.TakingTimes) {
       takingTime = new Date(takingTime)
       let current_diff = Math.abs((currentDateTime.getHours() - takingTime.getHours()))
-      if (current_diff < min_difference) {
-        min_difference = current_diff
-        next_time = takingTime
-      }
+      if (currentDateTime.getHours() < takingTime.getHours())
+        if (current_diff <= min_difference) {
+          min_difference = current_diff
+          next_time = takingTime
+        }
     }
     return next_time
   }

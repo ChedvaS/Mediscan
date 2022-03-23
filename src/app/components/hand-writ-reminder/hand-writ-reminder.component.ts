@@ -27,7 +27,7 @@ export class HandWritReminderComponent implements OnInit {
     let value = null
     for (let index = 0; index < Number(this.frequency); index++) {
       if (this.remideserve.alarmListDate.length != 0)
-       value = new Date(this.remideserve.alarmListDate[index])
+       value = new Date(this.remideserve.alarmListDate[index]).toLocaleTimeString()
       this.alarmForm["alarm" + index] = new FormControl(value, Validators.required)
       this.alarmForm["SubjectReminder"] = new FormControl(this.remideserve.subjectemail, Validators.required)
 
