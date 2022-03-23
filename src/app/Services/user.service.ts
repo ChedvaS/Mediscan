@@ -1,6 +1,3 @@
-
-
-
 import { Injectable, NgZone } from '@angular/core';
 import auth from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -15,6 +12,7 @@ import { Observable } from 'rxjs';
 import * as firebase from 'firebase';
 import { reminders } from '../classes/reminders';
 import { RemindersService } from './reminders.service';
+import { activityReminders } from '../classes/ActivityReminders';
 @Injectable({
   providedIn: 'root',
 })
@@ -23,7 +21,7 @@ export class UserService {
   userData: any; // Save logged in user data
 
   currentuser: users = new users()
-
+  ListActivityRemindersOfUser:activityReminders[]
   constructor(
     public reminderserve:RemindersService,
     private http: HttpClient,
@@ -57,6 +55,9 @@ export class UserService {
       
 
           this.GetUserById(this.currentuser.gmail).subscribe(x=>this.currentuser.fname=x.fname,err=>alert("שגיאה בחיבור לשרת"))
+          this.reminderserve.GetActivityRemindersByGmail(this.currentuser.gmail).subscribe(x => {
+            this.reminderserve.numOfReminder = x.length
+          })
           this.route.navigate(["/scannePage"])
         });
         this.SetUserData(result);
