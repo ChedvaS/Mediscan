@@ -39,17 +39,11 @@ ok()
   //מתחילה את העידכון
   //לכל מחלקה ליצור כורנט ואז לשים את מה שנכנס מהפורם גרופ לכורנט ואז לפי זה לשלוח לפוניקציות עידכון ממולץ לבדוק אם היה שינוי
   Swal.fire(
-
     'התיזכורת נשמרה בהצלחה ,יתקבל מסרון למייל בשעת הלקיחה!',
-   
-  ).then((result)=>{ this.route.navigate(['/scannePage'])})
+
+  ).then((result)=>{
+    this.MedicineService.initalizeForms()
+    this.remideserve.alarmListDate = new Array<Date>()
+     this.route.navigate(['/scannePage'])})
 }
-// delete()
-// {
-//   Swal.fire(
-//     'האם ברצונך למחוק התראה?',
-//     'You clicked the button!',
-//     'success'
-//   ).then((result)=>{this.remideserve.    )})
-// }
 }
