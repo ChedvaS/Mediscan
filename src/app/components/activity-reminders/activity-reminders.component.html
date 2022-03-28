@@ -38,7 +38,7 @@
               <td (click)="showDetails(activeReminder)">לחץ</td>
               <td>
                 <span  style=" font-family: 'Calibri';font-size: 20px;" class="glyphicon glyphicon-stop" (click)="deleteReminder(activeReminder)"></span>
-                <span style=" font-family: 'Calibri';font-size: 20px; margin-left: 12px;"  class="glyphicon glyphicon-pencil"></span>
+                <span style=" font-family: 'Calibri';font-size: 20px; margin-left: 12px;"  class="glyphicon glyphicon-pencil" (click)="edit(activeReminder)"></span>
               </td>
               <td>{{activeReminder.LeftDays}}</td>
               <td>{{getNextTime(activeReminder) | date:'HH:mm'}}</td>

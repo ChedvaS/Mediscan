@@ -1,10 +1,13 @@
 import { style } from '@angular/animations';
+import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y/input-modality/input-modality-detector';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { MedicineService } from 'src/app/Services/medicine.service';
+import { ReminderDetailsService } from 'src/app/Services/reminder-details.service';
 import { RemindersService } from 'src/app/Services/reminders.service';
+import { UserService } from 'src/app/Services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,7 +20,12 @@ export class HandWritReminderComponent implements OnInit {
   save() {
     // this.WorksSere.lWorks.push(this.myForm.value)
   }
-  constructor(public MedicineService: MedicineService, public remideserve: RemindersService,public route:Router) { }
+  constructor(
+    public  MedicineService: MedicineService,
+      public remideserve: RemindersService,
+      public reminderDserve:ReminderDetailsService,
+      public userserve:UserService,
+     public route:Router) { }
 
   frequency: number = this.MedicineService.myForm.value["frequency"];
   alarmForm = {}
@@ -35,10 +43,14 @@ export class HandWritReminderComponent implements OnInit {
     }
   }
 ok()
-{ 
+{
   //מתחילה את העידכון
-  //לכל מחלקה ליצור כורנט ואז לשים את מה שנכנס מהפורם גרופ לכורנט ואז לפי זה לשלוח לפוניקציות עידכון ממולץ לבדוק אם היה שינוי
-  Swal.fire(
+   //לכל מחלקה ליצור כורנט ואז לשים את מה שנכנס מהפורם גרופ לכורנט ואז לפי זה לשלוח לפוניקציות עידכון ממולץ לבדוק אם היה שינוי
+  this.MedicineService.fillDataInCurrent()
+   this.MedicineService.UpdateMedicine(this.MedicineService.currentMedicine).subscribe (x=>console.log("sec"),err=>console.log(err));
+   this.reminderDserve.updateReminderDetails(this.reminderDserve.currentRDetail).subscribe (x=>console.log("sec"),err=>console.log(err));
+ 
+   Swal.fire(
     'התיזכורת נשמרה בהצלחה ,יתקבל מסרון למייל בשעת הלקיחה!',
 
   ).then((result)=>{
@@ -46,4 +58,6 @@ ok()
     this.remideserve.alarmListDate = new Array<Date>()
      this.route.navigate(['/scannePage'])})
 }
+
+
 }

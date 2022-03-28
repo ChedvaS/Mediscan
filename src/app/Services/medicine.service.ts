@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { medicine } from '../classes/medicine';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ListMedicine } from '../classes/ListMedicine';
+import { ReminderDetailsService } from './reminder-details.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,8 @@ import { ListMedicine } from '../classes/ListMedicine';
 export class MedicineService {
   //רשימה לתיזוכרות
   alarmList:Array<number>=new Array<number>();
+  //תרופה נוכחית
+  currentMedicine:medicine = new medicine()
  //משתנה בולאני לבדיקה האם הלקוח סוקר או כותב ידנית
  iswrite:boolean=false
 //הגדרת משתנה מסוג טופס
@@ -20,7 +23,9 @@ alarmForm:FormGroup
 url :string="https://localhost:44362/api/medicine/"
 
 //httpclient משתנה המאפשר גישה עם מסד הנתונים 
-constructor(private http:HttpClient ) { 
+constructor(
+  public reminderDServe:ReminderDetailsService,
+   private http:HttpClient ) { 
   this.initalizeForms()
 }
 
@@ -81,6 +86,16 @@ saveFileInServer(formData:FormData,email:string):Observable<Map<string,number>>
   return this.http.post<Map<string,number>>(this.url+"saveSticker/"+email+"/1",formData)
 }
 
-
+//מילוי הנתונים במשתנים העכשיוים 
+fillDataInCurrent()
+{
+  //עידכון שם תרופה
+  this.currentMedicine.nameMedicine=this.myForm.get("nameMedicine").value
+  //עידכון פרטי התראה
+  this.reminderDServe.currentRDetail.startDate=this.myForm.get("date").value
+  this.reminderDServe.currentRDetail.dosage=this.myForm.get("Minun").value
+  this.reminderDServe.currentRDetail.amountDays=this.myForm.get("numDate").value
+  this.reminderDServe.currentRDetail.frequincy=this.myForm.get("frequency").value 
+}
 
 }

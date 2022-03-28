@@ -183,5 +183,12 @@ input[type=submit]:hover {
     text-align: center;
   }
 } */
+/* @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+body{
+    width: 1000;
+    height: 700px;
+    background-image: url("../../../assets/Pictures/pic.png");
+    background-repeat: no-repeat;
+} */
 
 

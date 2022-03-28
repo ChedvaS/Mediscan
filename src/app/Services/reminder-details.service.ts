@@ -9,7 +9,8 @@ import { TakingDetails } from '../classes/TakingDetails';
   providedIn: 'root'
 })
 export class ReminderDetailsService {
-
+//פרטי תיזכורת נוכחית
+currentRDetail:reminderdetails=new reminderdetails();
 //httpclient משתנה המאפשר גישה עם מסד הנתונים 
 url :string="https://localhost:44362/api/reminderdatails/"
 constructor(private http:HttpClient ) { }

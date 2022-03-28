@@ -6,11 +6,13 @@
 
 <span  style=" font-size:22px; color:white; margin-top: 45px; margin-left: 900px;" class="glyphicon glyphicon-user" routerLink="/scannePage" ></span> ‏
 <span style="color: white; size: 50px;" class="arrow-alt-left"> </span>
+<div style="color: white;text-align: center; font-size:25px;  font-family: 'Calibri'; " >פרטי המדבקה שנסרקו</div>
 <form [formGroup]="MedicineService.myForm"  style="width: 300px;" class="example-button-row" >
     <div style=" width:550px; margin: auto; margin-left: 510px; margin-top: 65px; ">
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
         <div  style=" margin-left:135px; margin-top: -30px;"  class="form__group field">
             <input style="width: 250px; text-align: right; font-family: 'Calibri'; " type="text" formControlName="nameMedicine" class="form__field" placeholder="שם התרופה" name="NameMedicine" id='namemedicine' required />
             <label style="color: white; margin-left: 175px; font-family: 'Calibri';" for="namemedicine" class="form__label">שם התרופה</label>
@@ -20,7 +22,7 @@
         </div><br>
 
         <div style="margin-left:135px;" class="form__group field">
-            <input style=" font-family: 'Calibri';width: 250px; text-align: right;" type="text" formControlName="namePatient" class="form__field" placeholder=" שם הפציינט" name="NamePatient" id='namepatient' required />
+            <input readonly style=" font-family: 'Calibri';width: 250px; text-align: right;" type="text" formControlName="namePatient" class="form__field" placeholder=" שם הפציינט" name="NamePatient" id='namepatient' required />
             <label style=" font-family: 'Calibri';color: rgb(185, 176, 176); margin-left: 175px; " for="namePatient" class="form__label">שם הפציינט</label>
             <div style=" font-family: 'Calibri';color: white; margin-left: 165px; margin-top: 10px;" *ngIf="MedicineService.myForm.controls['namePatient'].invalid  && (MedicineService.myForm.controls['namePatient'].dirty ||MedicineService.myForm.controls['namePatient'].touched ) ">
                 ! שדה חובה
@@ -68,8 +70,8 @@
 
     </div>
 </form>
-<button routerLink="/handWritReminderComponent" style="margin-top: 100px; margin-left: 700px; padding: 10px 20px; border-radius: 100px; width: 150px;" type="button" class="btn">
-    <div style="font-size: 15px;  font-family: 'Calibri';; ">שעות התיזכורות</div>
+<button routerLink="/handWritReminderComponent" style="border-color: black;  position:absolute;left:-30px; bottom:5px;margin-top: 100px; margin-left: 700px; padding: 10px 20px; border-radius: 100px; width: 180px;" type="button" class="btn">
+    <div style="font-size: 15px;   font-family: 'Calibri'; ">מעבר לשעות התיזכורות</div>
   </button>
 
 <!-- <input style=" font-family: 'Calibri';margin-left: auto;"  type="checkbox" class="form__field" name="Frequency" id='frequency' required /> 

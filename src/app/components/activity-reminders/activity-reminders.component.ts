@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { activityReminders } from 'src/app/classes/ActivityReminders';
+import { MedicineService } from 'src/app/Services/medicine.service';
 import { ReminderDetailsService } from 'src/app/Services/reminder-details.service';
 import { RemindersService } from 'src/app/Services/reminders.service';
 import { UserService } from 'src/app/Services/user.service';
@@ -23,7 +24,10 @@ export class ActivityRemindersComponent implements OnInit {
   ListActivityReminders: activityReminders[];
 
 
-  constructor(private reminderServe: RemindersService, private userServe: UserService, private router: Router, private reminderDetailsServe: ReminderDetailsService) { }
+  constructor(private reminderServe: RemindersService
+    , private userServe: UserService, private router: Router
+    , private reminderDetailsServe: ReminderDetailsService,
+    public medicineServe:MedicineService) { }
 
   ngOnInit(): void {
     this.reminderServe.GetActivityRemindersByGmail(this.userServe.currentuser.gmail).subscribe(x => {
@@ -95,7 +99,23 @@ export class ActivityRemindersComponent implements OnInit {
 
 
 
-
-
-
+ edit(activeR:activityReminders)
+   {
+   this.medicineServe.GetMedicineById(activeR.MedicineId).subscribe(x=>
+    {
+      this.medicineServe.currentMedicine=x
+     this.medicineServe.myForm.get("nameMedicine").setValue(x.nameMedicine)} )
+     
+          this.reminderDetailsServe.GetReminderDetailsById(activeR.reminderDId).subscribe(x => {
+            this.reminderDetailsServe.currentRDetail=x
+            this.medicineServe.myForm.get("Minun").setValue(x.dosage)
+            this.medicineServe.myForm.get("numDate").setValue(x.amountDays)
+            this.medicineServe.myForm.get("frequency").setValue(x.frequincy)
+            this.medicineServe.myForm.get("date").setValue(new Date(x.startDate))
+             this.medicineServe.myForm.get("namePatient").setValue(this.userServe.currentuser.fname)
+          }
+    )
+   this.router.navigate(["handWritMedicine"])
+    }
+     
 }
