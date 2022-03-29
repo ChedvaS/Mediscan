@@ -26,12 +26,14 @@ export class SearchMedicineComponent implements OnInit {
     //טעינת רשימת התרופות לפי מייל
     this.medicineService.GetMedicineListByGmail(this.userserve.currentuser.gmail).subscribe(data => {
       let today = new Date()
+      let followWeek = new Date()
+      followWeek.setDate(today.getDate()+7)
       for (let medicine of data) {
         medicine.ExpiryDate = new Date(medicine.ExpiryDate)
-        if (medicine.ExpiryDate?.getDate() > today.getDate() + 7)
+        if (medicine.ExpiryDate > followWeek)
           medicine.status = "ok"
         else
-          if (medicine.ExpiryDate?.getDate() > today.getDate())
+          if (medicine.ExpiryDate > today)
             medicine.status = "almost_passed"
           else
             medicine.status = "passed"

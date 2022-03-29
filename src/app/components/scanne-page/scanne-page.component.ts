@@ -76,6 +76,7 @@ export class ScannePageComponent implements OnInit {
                 , err => console.log(err));
             }
           })
+          this.reminderserve.numOfReminder += 1
       this.router.navigate(["/handWritMedicine"]);
       }
       else {

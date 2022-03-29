@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { activityReminders } from 'src/app/classes/ActivityReminders';
 import { MedicineService } from 'src/app/Services/medicine.service';
+import { MedicinestockService } from 'src/app/Services/medicinestock.service';
 import { ReminderDetailsService } from 'src/app/Services/reminder-details.service';
 import { RemindersService } from 'src/app/Services/reminders.service';
 import { UserService } from 'src/app/Services/user.service';
@@ -20,14 +21,15 @@ export class PeriodicElement {
   styleUrls: ['./activity-reminders.component.css']
 })
 export class ActivityRemindersComponent implements OnInit {
-  
+
   ListActivityReminders: activityReminders[];
 
 
   constructor(private reminderServe: RemindersService
     , private userServe: UserService, private router: Router
     , private reminderDetailsServe: ReminderDetailsService,
-    public medicineServe:MedicineService) { }
+    public medicineServe: MedicineService,
+    public medicineStockService: MedicinestockService) { }
 
   ngOnInit(): void {
     this.reminderServe.GetActivityRemindersByGmail(this.userServe.currentuser.gmail).subscribe(x => {
@@ -47,11 +49,12 @@ export class ActivityRemindersComponent implements OnInit {
     }
   }
   getNextTime(activeReminder: activityReminders) {
-    let first_time = new Date(activeReminder.TakingTimes[0])
+    let first_key = Object.keys(activeReminder.TakingTimes)[0]
+    let first_time = new Date(activeReminder.TakingTimes[first_key])
     let currentDateTime = new Date()
     let min_difference = Math.abs((currentDateTime.getHours() - first_time.getHours()))
     let next_time = first_time
-    for (let takingTime of activeReminder.TakingTimes) {
+    for (let [reminderId, takingTime] of Object.entries(activeReminder.TakingTimes)) {
       takingTime = new Date(takingTime)
       let current_diff = Math.abs((currentDateTime.getHours() - takingTime.getHours()))
       if (currentDateTime.getHours() < takingTime.getHours())
@@ -66,9 +69,9 @@ export class ActivityRemindersComponent implements OnInit {
   showDetails(activeReminder: activityReminders) {
     this.reminderServe.medicineTakeDetailsForm.get("namemedicine").setValue(activeReminder.MedicineName)
     this.reminderServe.medicineTakeDetailsForm.get("namepatient").setValue(this.userServe.currentuser.fname)
-   this.reminderServe.medicineTakeDetailsForm.get("frequency").setValue(activeReminder.frequincy) 
+    this.reminderServe.medicineTakeDetailsForm.get("frequency").setValue(activeReminder.frequincy)
     this.reminderServe.medicineTakeDetailsForm.get("leftdate").setValue(activeReminder.LeftDays)
-     this.reminderServe.medicineTakeDetailsForm.get("remarks").setValue(activeReminder.comment)
+    this.reminderServe.medicineTakeDetailsForm.get("remarks").setValue(activeReminder.comment)
     this.router.navigate(["detailsMedicineTake"])
   }
 
@@ -77,11 +80,11 @@ export class ActivityRemindersComponent implements OnInit {
       title: "האם ברצונך למחוק התראה?",
       text: "לא תוכל לבטל פעולה זו",
       showCancelButton: true,
-      cancelButtonText:"לא",
+      cancelButtonText: "לא",
       confirmButtonText: "כן, מחק"
 
     }).then((result) => {
-      let reminder_id = 0 //change to real id
+      let reminder_id = activeReminder.reminderDId //change to real id
       if (result.isConfirmed)
         this.reminderDetailsServe.deleteMedideleteReminderDetailscine(reminder_id).subscribe(x => {
           if (x == true) {
@@ -99,23 +102,28 @@ export class ActivityRemindersComponent implements OnInit {
 
 
 
- edit(activeR:activityReminders)
-   {
-   this.medicineServe.GetMedicineById(activeR.MedicineId).subscribe(x=>
-    {
-      this.medicineServe.currentMedicine=x
-     this.medicineServe.myForm.get("nameMedicine").setValue(x.nameMedicine)} )
-     
-          this.reminderDetailsServe.GetReminderDetailsById(activeR.reminderDId).subscribe(x => {
-            this.reminderDetailsServe.currentRDetail=x
-            this.medicineServe.myForm.get("Minun").setValue(x.dosage)
-            this.medicineServe.myForm.get("numDate").setValue(x.amountDays)
-            this.medicineServe.myForm.get("frequency").setValue(x.frequincy)
-            this.medicineServe.myForm.get("date").setValue(new Date(x.startDate))
-             this.medicineServe.myForm.get("namePatient").setValue(this.userServe.currentuser.fname)
-          }
-    )
-   this.router.navigate(["handWritMedicine"])
-    }
-     
+  edit(activeR: activityReminders) {
+    this.medicineServe.GetMedicineById(activeR.MedicineId).subscribe(x => {
+      this.medicineServe.currentMedicine = x
+      this.medicineServe.myForm.get("nameMedicine").setValue(x.nameMedicine)
+    })
+
+    this.reminderDetailsServe.GetReminderDetailsById(activeR.reminderDId).subscribe(x => {
+      this.reminderDetailsServe.currentRDetail = x
+      this.medicineServe.myForm.get("Minun").setValue(x.dosage)
+      this.medicineServe.myForm.get("numDate").setValue(x.amountDays)
+      this.medicineServe.myForm.get("frequency").setValue(x.frequincy)
+      this.medicineServe.myForm.get("date").setValue(new Date(x.startDate).toLocaleDateString())
+      this.medicineServe.myForm.get("namePatient").setValue(this.userServe.currentuser.fname)
+      this.medicineStockService.GetMedicineStockById(x.idMedicineStock).subscribe(data => {
+        this.medicineStockService.curentMedicineS = data
+        this.medicineServe.myForm.get("endDate").setValue(new Date(data.expiryDate))
+        for (let [reminderId, hourTake] of Object.entries(activeR.TakingTimes)) {
+          this.reminderServe.alarmListDate.push(new Date(hourTake))
+        }
+      })
+    })
+    this.router.navigate(["handWritMedicine"])
+  }
+
 }

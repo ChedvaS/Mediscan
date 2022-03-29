@@ -21,41 +21,43 @@ export class HandWritReminderComponent implements OnInit {
     // this.WorksSere.lWorks.push(this.myForm.value)
   }
   constructor(
-    public  MedicineService: MedicineService,
-      public remideserve: RemindersService,
-      public reminderDserve:ReminderDetailsService,
-      public userserve:UserService,
-     public route:Router) { }
+    public MedicineService: MedicineService,
+    public remideserve: RemindersService,
+    public reminderDserve: ReminderDetailsService,
+    public userserve: UserService,
+    public route: Router) { }
 
   frequency: number = this.MedicineService.myForm.value["frequency"];
   alarmForm = {}
 
-  
+
   ngOnInit(): void {
     let value = null
     for (let index = 0; index < Number(this.frequency); index++) {
       if (this.remideserve.alarmListDate.length != 0)
-       value = new Date(this.remideserve.alarmListDate[index]).toLocaleTimeString()
+        value = new Date(this.remideserve.alarmListDate[index]).toLocaleTimeString()
+        else
+        this.remideserve.alarmListDate.push(new Date())
       this.alarmForm["alarm" + index] = new FormControl(value, Validators.required)
       this.alarmForm["SubjectReminder"] = new FormControl(this.remideserve.subjectemail, Validators.required)
 
       this.MedicineService.alarmForm = new FormGroup(this.alarmForm)
     }
   }
-ok()
-{
-  //מתחילה את העידכון
-   //לכל מחלקה ליצור כורנט ואז לשים את מה שנכנס מהפורם גרופ לכורנט ואז לפי זה לשלוח לפוניקציות עידכון ממולץ לבדוק אם היה שינוי
-  this.MedicineService.fillDataInCurrent()
-   this.MedicineService.UpdateMedicine(this.MedicineService.currentMedicine).subscribe (x=>console.log("sec"),err=>console.log(err));
-   this.reminderDserve.updateReminderDetails(this.reminderDserve.currentRDetail).subscribe (x=>console.log("sec"),err=>console.log(err));
- 
-   Swal.fire(
-    'התיזכורת נשמרה בהצלחה ,יתקבל מסרון למייל בשעת הלקיחה!',
+  ok() {
+    //מתחילה את העידכון
+    //לכל מחלקה ליצור כורנט ואז לשים את מה שנכנס מהפורם גרופ לכורנט ואז לפי זה לשלוח לפוניקציות עידכון ממולץ לבדוק אם היה שינוי
+    this.MedicineService.fillDataInCurrent()
+    this.MedicineService.UpdateMedicine(this.MedicineService.currentMedicine).subscribe(x => console.log("sec"), err => console.log(err));
+    this.reminderDserve.updateReminderDetails(this.reminderDserve.currentRDetail).subscribe(x => console.log("sec"), err => console.log(err));
 
-  ).then((result)=>{
-    this.MedicineService.initalizeForms()
-    this.remideserve.alarmListDate = new Array<Date>()
-     this.route.navigate(['/scannePage'])})
-}
+    Swal.fire(
+      'התיזכורת נשמרה בהצלחה ,יתקבל מסרון למייל בשעת הלקיחה!',
+
+    ).then((result) => {
+      this.MedicineService.initalizeForms()
+      this.remideserve.alarmListDate = new Array<Date>()
+      this.route.navigate(['/scannePage'])
+    })
+  }
 }
