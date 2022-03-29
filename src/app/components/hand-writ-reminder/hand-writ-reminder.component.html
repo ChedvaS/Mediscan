@@ -20,7 +20,6 @@
         </div><br> <br> <br> <br>
         
         <!-- [value]="MedicineService.alarmForm.get(alarm).value | date:'HH:mm'"  -->
-          <!-- ליצור פור שלפי התדירות ביום יפתח ההתראות -->
           
         <div *ngFor="let myDate of remideserve.alarmListDate ; let i=index  "style="margin-left:135px;" class="form__group field">
             <input style="width: 250px; text-align: right;"  formControlName="alarm{{i}}"  type="text" class="form__field" placeholder="התראה" name="Alarm‏" id='alarm‏' required />

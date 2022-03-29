@@ -58,6 +58,4 @@ ok()
     this.remideserve.alarmListDate = new Array<Date>()
      this.route.navigate(['/scannePage'])})
 }
-
-
 }

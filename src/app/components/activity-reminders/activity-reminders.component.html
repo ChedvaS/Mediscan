@@ -22,8 +22,7 @@
           <thead>
             <tr>
               <th >פירוט</th>
-              <th>עריכה</th>
-              <!-- <th>עריכה</th> -->
+              <th>עריכה/מחיקה</th> 
               <th>ימים שנותרו</th>
               <th>התזכורת הבאה</th>
               <th>שם תרופה</th>
@@ -32,12 +31,12 @@
         </table>
       </div>
       <div class="tbl-content">
-        <table cellpadding="0" cellspacing="0">
+        <table style=" font-family: 'Calibri';" cellpadding="0" cellspacing="0">
           <tbody>
             <tr *ngFor="let activeReminder of ListActivityReminders">
-              <td (click)="showDetails(activeReminder)">לחץ</td>
+              <td    (click)="showDetails(activeReminder)">לחץ</td>
               <td>
-                <span  style=" font-family: 'Calibri';font-size: 20px;" class="glyphicon glyphicon-stop" (click)="deleteReminder(activeReminder)"></span>
+                <a  style="color: white; font-family: 'Calibri';font-size:15px;"  (click)="deleteReminder(activeReminder)">מחק</a>
                 <span style=" font-family: 'Calibri';font-size: 20px; margin-left: 12px;"  class="glyphicon glyphicon-pencil" (click)="edit(activeReminder)"></span>
               </td>
               <td>{{activeReminder.LeftDays}}</td>
