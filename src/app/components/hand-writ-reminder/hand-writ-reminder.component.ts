@@ -26,11 +26,8 @@ export class HandWritReminderComponent implements OnInit {
     public reminderDserve: ReminderDetailsService,
     public userserve: UserService,
     public route: Router) { }
-
   frequency: number = this.MedicineService.myForm.value["frequency"];
   alarmForm = {}
-
-
   ngOnInit(): void {
     let value = null
     for (let index = 0; index < Number(this.frequency); index++) {
@@ -40,7 +37,6 @@ export class HandWritReminderComponent implements OnInit {
         this.remideserve.alarmListDate.push(new Date())
       this.alarmForm["alarm" + index] = new FormControl(value, Validators.required)
       this.alarmForm["SubjectReminder"] = new FormControl(this.remideserve.subjectemail, Validators.required)
-
       this.MedicineService.alarmForm = new FormGroup(this.alarmForm)
     }
   }
@@ -48,8 +44,18 @@ export class HandWritReminderComponent implements OnInit {
     //מתחילה את העידכון
     //לכל מחלקה ליצור כורנט ואז לשים את מה שנכנס מהפורם גרופ לכורנט ואז לפי זה לשלוח לפוניקציות עידכון ממולץ לבדוק אם היה שינוי
     this.MedicineService.fillDataInCurrent()
+    //בדיקה אם הוספה או עידכון
+   if(this.reminderDserve.IsAdd)
+   {
+    this.MedicineService.currentMedicine.userName=this.userserve.currentuser.gmail
+    this.MedicineService.AddMedicine(this.MedicineService.currentMedicine).subscribe(x => console.log("sec"), err => console.log(err));
+    this.reminderDserve.addReminderDetails(this.reminderDserve.currentRDetail).subscribe(x => console.log("sec"), err => console.log(err));
+    this.reminderDserve.IsAdd=false
+   }
+   else{
     this.MedicineService.UpdateMedicine(this.MedicineService.currentMedicine).subscribe(x => console.log("sec"), err => console.log(err));
     this.reminderDserve.updateReminderDetails(this.reminderDserve.currentRDetail).subscribe(x => console.log("sec"), err => console.log(err));
+  }
 
     Swal.fire(
       'התיזכורת נשמרה בהצלחה ,יתקבל מסרון למייל בשעת הלקיחה!',

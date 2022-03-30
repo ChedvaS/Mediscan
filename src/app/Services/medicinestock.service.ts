@@ -26,6 +26,12 @@ GetMedicineStockById(idMedicine:number):Observable<medicinestock>
   return this.http.get<medicinestock>(this.url+'GetmedicineStockById/'+idMedicine)
 }
 
+הוספה
+
+AddMedicineStock(ms:medicinestock):Observable<boolean>
+{
+  return this.http.post<boolean>(this.url+"updateMedicine",ms)
+}
  //עידכון 
  updateMedicine(ms:medicinestock):Observable<boolean>
  {

@@ -9,6 +9,8 @@ import { TakingDetails } from '../classes/TakingDetails';
   providedIn: 'root'
 })
 export class ReminderDetailsService {
+  //משתנה בולאני לבדיקה האם הוספה
+  IsAdd:boolean=false;
 //פרטי תיזכורת נוכחית
 currentRDetail:reminderdetails=new reminderdetails();
 //httpclient משתנה המאפשר גישה עם מסד הנתונים 

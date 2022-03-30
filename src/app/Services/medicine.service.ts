@@ -5,6 +5,7 @@ import { medicine } from '../classes/medicine';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ListMedicine } from '../classes/ListMedicine';
 import { ReminderDetailsService } from './reminder-details.service';
+import { RemindersService } from './reminders.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ url :string="https://localhost:44362/api/medicine/"
 
 //httpclient משתנה המאפשר גישה עם מסד הנתונים 
 constructor(
-  public reminderDServe:ReminderDetailsService,
+  public reminderDServe:ReminderDetailsService,public reminderserve:RemindersService,
    private http:HttpClient ) { 
   this.initalizeForms()
 }
@@ -96,6 +97,7 @@ fillDataInCurrent()
   this.reminderDServe.currentRDetail.dosage=this.myForm.get("Minun").value
   this.reminderDServe.currentRDetail.amountDays=this.myForm.get("numDate").value
   this.reminderDServe.currentRDetail.frequincy=this.myForm.get("frequency").value 
+  //this.reminderDServe.currentRDetail.subjectGmail=this.alarmForm.get("frequency").value 
 }
 
 }

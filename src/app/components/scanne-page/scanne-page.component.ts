@@ -10,6 +10,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TouchSequence } from 'selenium-webdriver';
 import { UserService } from 'src/app/Services/user.service';
 import Swal from 'sweetalert2';
+import { activityReminders } from 'src/app/classes/ActivityReminders';
+//import { timeStamp } from 'console';
 
 @Component({
   selector: 'app-scanne-page',
@@ -23,7 +25,7 @@ export class ScannePageComponent implements OnInit {
     , public medicinstockserve: MedicinestockService,
     public reminderdetailserve: ReminderDetailsService,
     public reminderserve: RemindersService, public userserve: UserService,
-    public usersereve: UserService
+  
 
   ) { }
   //הגדרת משתנים
@@ -85,4 +87,15 @@ export class ScannePageComponent implements OnInit {
           'success'
         ).then((result) => { this.router.navigate(['/scannePage']) })
       }})}
+
+
+
+
+
+      byhand()
+      {
+            this.reminderdetailserve.IsAdd=true
+            this.medicineserve.myForm.get("namePatient").setValue(this.userserve.currentuser.fname)
+            this.router.navigate(["/handWritMedicine"])
+        }
   }

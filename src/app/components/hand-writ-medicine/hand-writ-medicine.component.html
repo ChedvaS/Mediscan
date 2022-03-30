@@ -50,7 +50,7 @@
         </div><br>
 
         <div style=" font-family: 'Calibri';margin-left:135px;" class="form__group field">
-            <input style=" font-family: 'Calibri';width: 250px ; text-align: right;" type="text" formControlName="frequency" class="form__field" placeholder=" תדירות ביום" name="Frequency" id='frequency' required />
+            <input  style=" font-family: 'Calibri';width: 250px ; text-align: right;" type="text" formControlName="frequency" class="form__field" placeholder=" תדירות ביום" name="Frequency" id='frequency' required />
             <label style=" font-family: 'Calibri';color: white; margin-left: 172px;" for="frequency" class="form__label">תדירות ביום</label>
             <div style=" font-family: 'Calibri';color: white; margin-left: 182px; margin-top: 10px;" *ngIf="MedicineService.myForm.controls['frequency'].invalid  && (MedicineService.myForm.controls['frequency'].dirty ||MedicineService.myForm.controls['frequency'].touched )">
                 ! שדה חובה

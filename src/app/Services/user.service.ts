@@ -162,7 +162,7 @@ export class UserService {
     return this.afAuth.signOut().then(() => {
       this.currentuser = new users()
       localStorage.removeItem('user');
-      this.router.navigate(['sign-in']);
+      this.router.navigate(['open']);
     });
   }
 //שליפת לקוח לפי קוד
