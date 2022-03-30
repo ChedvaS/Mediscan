@@ -25,7 +25,7 @@ export class ScannePageComponent implements OnInit {
     , public medicinstockserve: MedicinestockService,
     public reminderdetailserve: ReminderDetailsService,
     public reminderserve: RemindersService, public userserve: UserService,
-  
+
 
   ) { }
   //הגדרת משתנים
@@ -52,50 +52,66 @@ export class ScannePageComponent implements OnInit {
     this.formData.append('sticker', this.fileToUpload, this.fileToUpload.name);
     //send it to extract data
     this.medicineserve.saveFileInServer(this.formData, email).subscribe(p => {
-      p= new Map(Object.entries(p));
-      if ( p.size > 0) {
+      p = new Map(Object.entries(p));
+      let isAllSuccess = true
+      if (p.size > 0) {
         if (p.has("idMedicneStock"))
           this.medicinstockserve.GetMedicineStockById(p.get("idMedicneStock")).subscribe(x => this.medicinstockserve.curentMedicineS = x)
+        else
+          isAllSuccess = false
         if (p.has("idMedicne"))
-          this.medicineserve.GetMedicineById(p.get("idMedicne")).subscribe(x =>
-          {this.medicineserve.currentMedicine=x
-            this.medicineserve.myForm.get("nameMedicine").setValue(x.nameMedicine)} )
+          this.medicineserve.GetMedicineById(p.get("idMedicne")).subscribe(x => {
+            this.medicineserve.currentMedicine = x
+            this.medicineserve.myForm.get("nameMedicine").setValue(x.nameMedicine)
+          })
+        else
+          isAllSuccess = false
         // this.medicinstockserve.GetMedicineStockById(p.get("idMedicneStock")).subscribe( x=>
         // this.medicineserve.myForm.get("date").setValue(x.insertDate))
         if (p.has("Idreminderdetails"))
           this.reminderdetailserve.GetReminderDetailsById(p.get("Idreminderdetails")).subscribe(x => {
-            this.reminderdetailserve.currentRDetail=x
+            this.reminderdetailserve.currentRDetail = x
             this.medicineserve.myForm.get("Minun").setValue(x.dosage)
             this.medicineserve.myForm.get("numDate").setValue(x.amountDays)
             this.medicineserve.myForm.get("frequency").setValue(x.frequincy)
-            this.medicineserve.myForm.get("date").setValue(new Date(x.startDate))
+            this.medicineserve.myForm.get("date").setValue(new Date(x.startDate).toISOString().slice(0, 10))
             frequency = Number(x.frequincy)
             this.reminderserve.subjectemail = x.subjectGmail
-            //מילוי טופס ההתראות לפי כמות התראות כל אחד מתמלא בשעת הלקיחה
-            for (let i = 0; i < frequency; i++) {
-              this.reminderserve.GetRemindersById(p.get("Idreminder" + i + 1)).subscribe(r =>
+            this.reminderserve.getAllReminders().subscribe(reminders => {
+              if (reminders)
+                this.reminderserve.reminders = reminders
+              //מילוי טופס ההתראות לפי כמות התראות כל אחד מתמלא בשעת הלקיחה
+              for (let i = 0; i < frequency; i++) {
+                let r = reminders.filter(y => y.id == p.get("Idreminder" + i + 1))[0]
                 this.reminderserve.alarmListDate.push(r.hourTake)
-                , err => console.log(err));
-            }
+              }
+              this.reminderserve.numOfReminder += 1
+            })
           })
-          this.reminderserve.numOfReminder += 1
-      this.router.navigate(["/handWritMedicine"]);
+        else
+          isAllSuccess = false
+        if (!isAllSuccess)
+          Swal.fire('לא הצלחנו לקרוא את כל נתוני המדבקה בבקשה השלם את החסר באופן ידני')
+            .then((result) => { this.router.navigate(['/handWritMedicine']) })
+        else
+          this.router.navigate(["/handWritMedicine"]);
+
       }
       else {
         Swal.fire(
           'לא הצלחנו לקרוא את נתוני המדבקה בבקשה נסה שנית או הקלד ידנית!',
-          'success'
         ).then((result) => { this.router.navigate(['/scannePage']) })
-      }})}
+      }
+    })
 
-
-
-
-
-      byhand()
-      {
-            this.reminderdetailserve.IsAdd=true
-            this.medicineserve.myForm.get("namePatient").setValue(this.userserve.currentuser.fname)
-            this.router.navigate(["/handWritMedicine"])
-        }
   }
+
+
+
+
+  byhand() {
+    this.reminderdetailserve.IsAdd = true
+    this.medicineserve.myForm.get("namePatient").setValue(this.userserve.currentuser.fname)
+    this.router.navigate(["/handWritMedicine"])
+  }
+}

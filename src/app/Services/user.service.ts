@@ -21,9 +21,9 @@ export class UserService {
   userData: any; // Save logged in user data
 
   currentuser: users = new users()
-  ListActivityRemindersOfUser:activityReminders[]
+  ListActivityRemindersOfUser: activityReminders[]
   constructor(
-    public reminderserve:RemindersService,
+    public reminderserve: RemindersService,
     private http: HttpClient,
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
@@ -45,16 +45,16 @@ export class UserService {
       }
     });
   }
-      
+
   // Sign in with email/password
   SignIn() {
     return this.afAuth
       .signInWithEmailAndPassword(this.currentuser.gmail, this.currentuser.pass)
       .then((result) => {
         this.ngZone.run(() => {
-      
 
-          this.GetUserById(this.currentuser.gmail).subscribe(x=>this.currentuser.fname=x.fname,err=>alert("שגיאה בחיבור לשרת"))
+
+          this.GetUserById(this.currentuser.gmail).subscribe(x => this.currentuser.fname = x.fname, err => alert("שגיאה בחיבור לשרת"))
           this.reminderserve.GetActivityRemindersByGmail(this.currentuser.gmail).subscribe(x => {
             this.reminderserve.numOfReminder = x.length
           })
@@ -100,7 +100,7 @@ export class UserService {
       .catch((error) => {
         window.alert(error);
       });    //לבדוק אם הלקוח רשום במערכת
-    
+
   }
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
@@ -123,23 +123,25 @@ export class UserService {
       .signInWithPopup(provider)
       .then((result) => {
         result.user.linkWithCredential(auth.auth.EmailAuthProvider.credential(result.user.email, 'password'))
-        this.currentuser.gmail=result.user.email,
-        this.currentuser.fname=result.user.displayName
+        this.currentuser.gmail = result.user.email,
+          this.currentuser.fname = result.user.displayName
         this.ngZone.run(() => {
-    //שליפת לקוח מהדתה בייס
- this.GetUserById(this.currentuser.gmail).subscribe(x=>
-  {if (x)
-    this.currentuser.fname=x.fname
-    else
-    {
+          //שליפת לקוח מהדתה בייס
+          this.GetUserById(this.currentuser.gmail).subscribe(x => {
+            if (x)
+              this.currentuser.fname = x.fname
+            else {
 
-      this.addUser().subscribe(x=>alert("ברוך הבא"),err=>alert("שגיאה"))
-    }
-  }
-    ,err=>alert("שגיאה בחיבור לשרת"))
+              this.addUser().subscribe(x => alert("ברוך הבא"), err => alert("שגיאה"))
+            }
+          }
+            , err => alert("שגיאה בחיבור לשרת"))
           this.router.navigate(['scannePage']);
         });
-        this.SetUserData(result);
+        this.reminderserve.GetActivityRemindersByGmail(this.currentuser.gmail).subscribe(x => {
+          this.reminderserve.numOfReminder = x.length
+        })
+        // this.SetUserData(result);
       })
       .catch((error) => {
         window.alert(error);
@@ -152,7 +154,7 @@ export class UserService {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.user.uid}`
     );
-    const userData = { "email": this.currentuser.gmail, "password":this.currentuser.pass  }
+    const userData = { "email": this.currentuser.gmail, "password": this.currentuser.pass }
     return userRef.set(userData, {
       merge: true,
     });
@@ -165,11 +167,10 @@ export class UserService {
       this.router.navigate(['open']);
     });
   }
-//שליפת לקוח לפי קוד
-GetUserById(gmail:string):Observable<users>
-{
-  return this.http.get<users>(this.url+'GetUserById/'+gmail+"/1")
-}
+  //שליפת לקוח לפי קוד
+  GetUserById(gmail: string): Observable<users> {
+    return this.http.get<users>(this.url + 'GetUserById/' + gmail + "/1")
+  }
 
   //הוספה
   addUser(): Observable<boolean> {

@@ -18,16 +18,16 @@ export class HandWritMedicineComponent implements OnInit {
     
   }
  
-  updetexpirydate()
-  {
+  // updetexpirydate()
+  // {
     
-    this.medicneSserve.curentMedicineS.expiryDate=this.MedicineService.myForm.get("endDate").value
-    if(this.reminderdetalsServe.IsAdd)
-    this.medicneSserve.AddMedicineStock(this.medicneSserve.curentMedicineS).subscribe
-    (x=>console.log("sec"),err=>console.log(err));
-    else
-    this.medicneSserve.updateMedicine(this.medicneSserve.curentMedicineS).subscribe
-    (x=>console.log("sec"),err=>console.log(err));
-  }
+  //   this.medicneSserve.curentMedicineS.expiryDate=this.MedicineService.myForm.get("endDate").value
+  //   if(this.reminderdetalsServe.IsAdd)
+  //   this.medicneSserve.AddMedicineStock(this.medicneSserve.curentMedicineS).subscribe
+  //   (x=>console.log("sec"),err=>console.log(err));
+  //   else
+  //   this.medicneSserve.updateMedicine(this.medicneSserve.curentMedicineS).subscribe
+  //   (x=>console.log("sec"),err=>console.log(err));
+  // }
 
 }

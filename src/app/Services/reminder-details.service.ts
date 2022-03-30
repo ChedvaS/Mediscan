@@ -28,9 +28,9 @@ GetReminderDetailsById(idReminderDetails:number):Observable<reminderdetails>
   return this.http.get<reminderdetails>(this.url+'GetReminderDetailsById/'+idReminderDetails)
 }
 //הוספה
-addReminderDetails  (r:reminderdetails):Observable<boolean>
+addReminderDetails  (r:reminderdetails):Observable<number>
 {
-return  this.http.put<boolean>(this.url+'addReminderDetails',r)
+return  this.http.put<number>(this.url+'addReminderDetails',r)
 }
 //עידכון
 updateReminderDetails(r:reminderdetails):Observable<boolean>{

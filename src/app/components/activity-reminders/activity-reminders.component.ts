@@ -84,13 +84,14 @@ export class ActivityRemindersComponent implements OnInit {
       confirmButtonText: "כן, מחק"
 
     }).then((result) => {
-      let reminder_id = activeReminder.reminderDId //change to real id
+      let reminder_id = activeReminder.reminderDId 
       if (result.isConfirmed)
         this.reminderDetailsServe.deleteMedideleteReminderDetailscine(reminder_id).subscribe(x => {
           if (x == true) {
             let activeReminderIndex = this.ListActivityReminders.indexOf(activeReminder)
             if (activeReminderIndex != -1)
               this.ListActivityReminders.splice(activeReminderIndex, 1)
+              this.reminderServe.numOfReminder -= 1
             console.log("successfully deleted")
           }
           else
@@ -113,11 +114,11 @@ export class ActivityRemindersComponent implements OnInit {
       this.medicineServe.myForm.get("Minun").setValue(x.dosage)
       this.medicineServe.myForm.get("numDate").setValue(x.amountDays)
       this.medicineServe.myForm.get("frequency").setValue(x.frequincy)
-      this.medicineServe.myForm.get("date").setValue(new Date(x.startDate).toLocaleDateString())
+      this.medicineServe.myForm.get("date").setValue(new Date(x.startDate).toISOString().slice(0, 10))
       this.medicineServe.myForm.get("namePatient").setValue(this.userServe.currentuser.fname)
       this.medicineStockService.GetMedicineStockById(x.idMedicineStock).subscribe(data => {
         this.medicineStockService.curentMedicineS = data
-        this.medicineServe.myForm.get("endDate").setValue(new Date(data.expiryDate))
+        this.medicineServe.myForm.get("endDate").setValue(new Date(data.expiryDate).toISOString().slice(0, 10))
         for (let [reminderId, hourTake] of Object.entries(activeR.TakingTimes)) {
           this.reminderServe.alarmListDate.push(new Date(hourTake))
         }

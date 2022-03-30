@@ -93,7 +93,7 @@ fillDataInCurrent()
   //עידכון שם תרופה
   this.currentMedicine.nameMedicine=this.myForm.get("nameMedicine").value
   //עידכון פרטי התראה
-  this.reminderDServe.currentRDetail.startDate=this.myForm.get("date").value
+  this.reminderDServe.currentRDetail.startDate=new Date(this.myForm.get("date").value)
   this.reminderDServe.currentRDetail.dosage=this.myForm.get("Minun").value
   this.reminderDServe.currentRDetail.amountDays=this.myForm.get("numDate").value
   this.reminderDServe.currentRDetail.frequincy=this.myForm.get("frequency").value 
